@@ -274,8 +274,8 @@
 }
 .share-button {
   margin: 0 auto;
-  margin-top: 5%;
-  width: 250px;
+  margin-top: 10%;
+  width: 220px;
   height: 35px;
   background: #dfe6e9;
   border-radius: 10px;
@@ -291,9 +291,9 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background: black;
+  background: rgba(54, 93, 175, 0.92);
   border: solid;
-  border: #000;
+  border: rgba(54, 93, 175, 0.92);
   color: #f1f1f1;
   text-align: center;
   align-items: center;
@@ -327,7 +327,7 @@
   transform: translateX(0);
 }
 .mchocie {
-  margin-top: 5%;
+  margin-top: 7%;
   text-align: center;
   font-size: 16px;
   color: #495057;
@@ -343,6 +343,7 @@ hr {
   font-size: 1.1em;
   font-family: kaiti;
   color: antiquewhite;
+  opacity: 80%;
 }
 .menubutton:hover {
   font-size: 1.2em;
@@ -371,11 +372,10 @@ hr {
   width: 18px;
 }
 .search {
-  margin: 0 auto;
   width: 200px;
   display: flex;
   cursor: pointer;
-  margin-top: 5%;
+  margin: 5% auto 15%;
   position: relative;
   height: 30px;
   text-align: right;
@@ -582,12 +582,11 @@ hr {
   font-size: 20px;
   text-align: center;
   line-height: 40px;
-  background: #353535;
   color: #565656;
   text-decoration: none;
   margin: 5px;
   border-radius: 4px;
-  box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 2px 2px rgba(190, 213, 255, 0.98), 0 2px 2px rgba(54, 93, 175, 0.79);
 }
 .pagi ul li a.active,
 .pagi ul li a:hover {
@@ -683,7 +682,7 @@ hr {
 .postdate {
   margin-top: 10px;
   padding: 5px 10px 5px 10px;
-  background: #ff4e6a;
+  background: rgba(56, 101, 185, 0.94);
   color: white;
   font-weight: bold;
   border-radius: 10px;
@@ -692,7 +691,7 @@ hr {
 }
 .poststatus {
   margin-left: 10px;
-  background: #ffaa73;
+  background: rgba(255, 173, 131, 0.87);
 }
 .posttag {
   margin-top: 10px;
@@ -705,14 +704,14 @@ hr {
 }
 .postlink {
   margin-left: 5px;
-  border: solid;
+  border: 2px solid;
   border-radius: 10px;
   padding: 5px 10px 5px 10px;
-  color: #3cdc82;
+  color: #ffffff;
 }
 .postlink:hover {
   text-decoration: none;
-  color: #3cdc82;
+  color: #ffa2b3;
 }
 .postinfo {
   margin-left: 0;
@@ -1941,14 +1940,14 @@ a {
   min-height: 100vh;
   background: whitesmoke;
   width: 58.33%;
-  opacity: 0.6;
+  opacity: 0.1;
 }
 .tagsbackgroundtop {
   position: fixed;
   min-height: 100vh;
   background: whitesmoke;
   width: 100%;
-  opacity: 0.6;
+  opacity: 0.1;
 }
 .tagintro {
   padding-top: 2%;
@@ -1958,17 +1957,20 @@ a {
   text-align: left;
 }
 .tag {
+  position: absolute;
+  left: 20px;
   display: inline;
   float: left;
-  width: 20%;
+  width: 10%;
   margin-left: 2%;
   margin-top: 5%;
   margin-right: 2%;
-  border: solid;
+  border: 2px solid;
   border-radius: 7px;
   padding: 5px;
-  color: #3cdc82;
-  font-size: 1.2em;
+  opacity: 0.8;
+  color: #6d9eeb;
+  font-size: 1em;
 }
 .tagsimg {
   width: 100%;

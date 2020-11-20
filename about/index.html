@@ -172,7 +172,7 @@
     
     <div id=side>
         <div class="avatar-border">
-            <img src="https://shirleyhz.github.io/images/avatar.png?v=1605897379624" class="avatar">
+            <img src="https://shirleyhz.github.io/images/avatar.png?v=1605904904684" class="avatar">
         </div>
         <div class="sitename">快跑猴哥来了</div>
         <span class="describtion" data-text='["永远热爱｜ 我的月亮永悬不落"]'>&nbsp;</span>
@@ -183,24 +183,24 @@
             <div class="search-results"></div>
         </div>
         
-    <div class="share-button">
-        <span>社交按钮</span>
-        
-        <a href="https://github.com/ShirleyHz" target="_blank"><i style="font-size: 20px;"><img class="icon"
-                    src="https://shirleyhz.github.io/media/images/github.png" alt=""></i></a>
-        
-        
-        <a onclick="showqq()"><i style="font-size: 20px;"><img class="icon" src="https://shirleyhz.github.io/media/images/QQ.png" alt=""></i></a>
-        
-        
-        
-        <a href="https://space.bilibili.com/5367292" target="_blank"><i style="font-size: 20px;"><img class="icon"
-                    src="https://shirleyhz.github.io/media/images/bilibili.png" alt=""></i></a>
-        
-        
-        
-    </div>
-    <div id="qq" style="display:none">2497000737</div>
+<!--        <div class="share-button">-->
+<!--            <span>社交按钮</span>-->
+<!--            -->
+<!--                <a href="https://github.com/ShirleyHz" target="_blank"><i style="font-size: 20px;"><img class="icon"-->
+<!--                                                                                                              src="https://shirleyhz.github.io/media/images/github.png" alt=""></i></a>-->
+<!--            -->
+<!--            -->
+<!--                <a onclick="showqq()"><i style="font-size: 20px;"><img class="icon" src="https://shirleyhz.github.io/media/images/QQ.png" alt=""></i></a>-->
+<!--            -->
+<!--            -->
+<!--            -->
+<!--                <a href="https://space.bilibili.com/5367292" target="_blank"><i style="font-size: 20px;"><img class="icon"-->
+<!--                                                                                                                src="https://shirleyhz.github.io/media/images/bilibili.png" alt=""></i></a>-->
+<!--            -->
+<!--            -->
+<!--            -->
+<!--        </div>-->
+<!--        <div id="qq" style="display:none">2497000737</div>-->
     
     
     <div class="mchocie describtion">
@@ -244,7 +244,9 @@
         <a href="https://shirleyhz.github.io/friends" class="menubutton">友人帐</a>
     </div>
     
+        <br><br>
     <hr>
+
     <div id="footinfo">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | Theme: <a
         href="https://github.com/850552586/gridea-theme-fog">Fog</a></div>
     
@@ -517,70 +519,6 @@
                 </div>
             </div>
             
-        
-        <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-</head>
-<body>
-    <div class="miniMode">
-        <meting-js id="myaplayer" server="netease" type="playlist" fixed="true" order="default">
-        </meting-js>
-    </div>   
-</body>
-
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-<script>
-    var aplayerid = "7501889";
-    var aplayerserver = "netease";
-    var aplayerorder = "random";
-    var aplayerautoplay = "false";
-    var aplayer = $("#myaplayer");
-    aplayer.attr("server",aplayerserver);
-    aplayer.attr("id",aplayerid);
-    aplayer.attr("order",aplayerorder);
-    if(aplayerautoplay=="true")
-        aplayer.attr("autoplay","true");
-</script>
-
-<script src="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/js/Aplayer.min.js"></script>
-<!-- require MetingJS -->
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
-<script>
-    function aplayerbtnInit(){
-        var player = document.querySelectorAll('meting-js')[0].aplayer;
-        player.lrc.hide();
-        var mbabtn = $("#mbaplayer");
-        if(player.paused==false)
-        {
-            mbabtn.removeClass("fa-play-circle-o");
-            mbabtn.addClass("fa-pause-circle");
-        }
-        else
-        {
-            mbabtn.addClass("fa-play-circle-o");
-            mbabtn.removeClass("fa-pause-circle");
-        }
-    }
-
-    function aplayerPlay(){
-        var player = document.querySelectorAll('meting-js')[0].aplayer;
-        var mbabtn = $("#mbaplayer");
-        if(player.paused==true)
-        {
-            player.play();
-            mbabtn.removeClass("fa-play-circle-o");
-            mbabtn.addClass("fa-pause-circle");
-        }
-        else
-        {
-            player.pause();
-            mbabtn.addClass("fa-play-circle-o");
-            mbabtn.removeClass("fa-pause-circle");
-        }
-    }
-</script>
         
         <div class="toc-container">
             <ul class="markdownIt-TOC">
