@@ -22,27 +22,35 @@
     
     <div id=side>
         <div class="avatar-border">
-            <img src="https://shirleyhz.github.io/images/avatar.png?v=1605874281218" class="avatar">
+            <img src="https://shirleyhz.github.io/images/avatar.png?v=1605896443826" class="avatar">
         </div>
         <div class="sitename">快跑猴哥来了</div>
         <span class="describtion" data-text='["永远热爱｜ 我的月亮永悬不落"]'>&nbsp;</span>
         
         <div class="search">
             <!-- <input type="text" class="search-input" placeholder="标题搜索(●'◡'●)" /> -->
-            <input type="text" class="search-input" placeholder="标题搜索 ⚆_⚆ つ♡">
+            <input type="text" class="search-input" placeholder="        这里是标题搜索 ⚆_⚆ つ♡">
             <div class="search-results"></div>
         </div>
         
     <div class="share-button">
         <span>社交按钮</span>
         
+        <a href="https://github.com/ShirleyHz" target="_blank"><i style="font-size: 20px;"><img class="icon"
+                    src="https://shirleyhz.github.io/media/images/github.png" alt=""></i></a>
         
         
+        <a onclick="showqq()"><i style="font-size: 20px;"><img class="icon" src="https://shirleyhz.github.io/media/images/QQ.png" alt=""></i></a>
+        
+        
+        
+        <a href="https://space.bilibili.com/5367292" target="_blank"><i style="font-size: 20px;"><img class="icon"
+                    src="https://shirleyhz.github.io/media/images/bilibili.png" alt=""></i></a>
         
         
         
     </div>
-    <div id="qq" style="display:none"></div>
+    <div id="qq" style="display:none">2497000737</div>
     
     
     <div class="mchocie describtion">
@@ -77,6 +85,10 @@
     
     
     
+    <div class="mchocie describtion">
+        <a href="https://shirleyhz.github.io/talk" class="menubutton">说说</a>
+    </div>
+    
     
     <div class="mchocie describtion">
         <a href="https://shirleyhz.github.io/friends" class="menubutton">友人帐</a>
@@ -86,11 +98,46 @@
     <div id="footinfo">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | Theme: <a
         href="https://github.com/850552586/gridea-theme-fog">Fog</a></div>
     
+    <div class="sitetime"><div id="sitegotimeDate">载入天数...</div>
+    <div id="sitegotimes">载入时分秒...</div></div>
+    <div id="cussitetime" style="display:none">11/20/2020</div>
+    
     
     </div>
 
 
 <script src="https://shirleyhz.github.io/media/js/wordshow.js"></script>
+    
+    <script>
+        //----------------------站点运行时间
+        var now = new Date();
+
+        function createtime() {
+            var sitegotime = document.getElementById("cussitetime").innerHTML + " 00:00:00";
+            var grt = new Date(sitegotime); //此处修改你的建站时间或者网站上线时间
+            now.setTime(now.getTime() + 250);
+            days = (now - grt) / 1000 / 60 / 60 / 24;
+            dnum = Math.floor(days);
+            hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+            hnum = Math.floor(hours);
+            if (String(hnum).length == 1) {
+                hnum = "0" + hnum;
+            }
+            minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+            mnum = Math.floor(minutes);
+            if (String(mnum).length == 1) {
+                mnum = "0" + mnum;
+            }
+            seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+            snum = Math.round(seconds);
+            if (String(snum).length == 1) {
+                snum = "0" + snum;
+            }
+            document.getElementById("sitegotimeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+            document.getElementById("sitegotimes").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        }
+        setInterval("createtime()", 250);
+    </script>
     
 
 
@@ -246,9 +293,9 @@
         
         <div id="post" style="width:100%">
             <img src="https://shirleyhz.github.io/post-images/hello-gridea.png" class="postimage"
-                onclick="window.location.href= 'https://shirleyhz.github.io/post/hello-gridea/';return false">
+                onclick="window.location.href= 'https://shirleyhz.github.io/hello-gridea/';return false">
             <div class="posttitlebox">
-                <div class="posttitle" onclick="window.location.href= 'https://shirleyhz.github.io/post/hello-gridea/';return false">
+                <div class="posttitle" onclick="window.location.href= 'https://shirleyhz.github.io/hello-gridea/';return false">
                     Hello Gridea
                 </div>
             </div>
@@ -258,7 +305,7 @@
             <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 2 min read</div>
             <div class="posttag">
                 
-                <a href="https://shirleyhz.github.io/tag/tdTVrZB9u/" class="postlink">
+                <a href="https://shirleyhz.github.io/tdTVrZB9u/" class="postlink">
                     <i class="fa fa-tag"></i> Gridea
                 </a>
                 
@@ -321,13 +368,77 @@
     </div>
     
     
+        <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+</head>
+<body>
+    <div class="miniMode">
+        <meting-js id="myaplayer" server="netease" type="playlist" fixed="true" order="default">
+        </meting-js>
+    </div>   
+</body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+<script>
+    var aplayerid = "7501889";
+    var aplayerserver = "netease";
+    var aplayerorder = "random";
+    var aplayerautoplay = "false";
+    var aplayer = $("#myaplayer");
+    aplayer.attr("server",aplayerserver);
+    aplayer.attr("id",aplayerid);
+    aplayer.attr("order",aplayerorder);
+    if(aplayerautoplay=="true")
+        aplayer.attr("autoplay","true");
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/js/Aplayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+<script>
+    function aplayerbtnInit(){
+        var player = document.querySelectorAll('meting-js')[0].aplayer;
+        player.lrc.hide();
+        var mbabtn = $("#mbaplayer");
+        if(player.paused==false)
+        {
+            mbabtn.removeClass("fa-play-circle-o");
+            mbabtn.addClass("fa-pause-circle");
+        }
+        else
+        {
+            mbabtn.addClass("fa-play-circle-o");
+            mbabtn.removeClass("fa-pause-circle");
+        }
+    }
+
+    function aplayerPlay(){
+        var player = document.querySelectorAll('meting-js')[0].aplayer;
+        var mbabtn = $("#mbaplayer");
+        if(player.paused==true)
+        {
+            player.play();
+            mbabtn.removeClass("fa-play-circle-o");
+            mbabtn.addClass("fa-pause-circle");
+        }
+        else
+        {
+            player.pause();
+            mbabtn.addClass("fa-play-circle-o");
+            mbabtn.removeClass("fa-pause-circle");
+        }
+    }
+</script>
+    
     </div>
     <div id="bg">
     </div>
-    <div id="bgchoice" style="display: none">link
+    <div id="bgchoice" style="display: none">default
     </div>
             
-            <div id="bgurl" style="display:none">https://hbimg.huabanimg.com/f7c28afb69ffd85621a343478e34f821d660072737ec8-BUwvv3</div>
+            <div id="bgurl" style="display:none">/media/images/custom-bgimage.jpeg</div>
              
 
     <!-- 响应式布局，针对手机端内容显示 -->
@@ -406,6 +517,8 @@
           
           
           
+          <li><a href="https://shirleyhz.github.io/talk">说说</a></li>
+          
           
           <li><a href="https://shirleyhz.github.io/friends">友链</a></li>
 
@@ -449,12 +562,12 @@
             <!-- 移动端欢迎页 -->
 <div class="welcome">
     <div class="avatar-border">
-        <img src="https://shirleyhz.github.io/images/avatar.png?v=1605874281218" class="avatar">
+        <img src="https://shirleyhz.github.io/images/avatar.png?v=1605896443826" class="avatar">
     </div>
     <span class="mobiledescribtion"></span>
 </div>
 
-    <div id="mobilebgurl" style="display:none"></div>
+<div id="mobilebgurl" style="display:none">/media/images/custom-mobilebgimage.jpeg</div>
 
 <script>
     var welcome = $('.welcome');
@@ -529,9 +642,9 @@
         
         <div id="post" style="width:100%">
             <img src="https://shirleyhz.github.io/post-images/hello-gridea.png" class="postimage"
-                onclick="window.location.href= 'https://shirleyhz.github.io/post/hello-gridea/';return false">
+                onclick="window.location.href= 'https://shirleyhz.github.io/hello-gridea/';return false">
             <div class="posttitlebox">
-                <div class="posttitle" onclick="window.location.href= 'https://shirleyhz.github.io/post/hello-gridea/';return false">
+                <div class="posttitle" onclick="window.location.href= 'https://shirleyhz.github.io/hello-gridea/';return false">
                     Hello Gridea
                 </div>
             </div>
@@ -541,7 +654,7 @@
             <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 2 min read</div>
             <div class="posttag">
                 
-                <a href="https://shirleyhz.github.io/tag/tdTVrZB9u/" class="postlink">
+                <a href="https://shirleyhz.github.io/tdTVrZB9u/" class="postlink">
                     <i class="fa fa-tag"></i> Gridea
                 </a>
                 

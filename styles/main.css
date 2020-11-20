@@ -1947,7 +1947,7 @@ a {
   position: fixed;
   min-height: 100vh;
   background: whitesmoke;
-  width: 50%;
+  width: 100%;
   opacity: 0.6;
 }
 .tagintro {
@@ -2067,3 +2067,16 @@ a {
     display: none;
   }
 }
+
+      .sitename {
+        color: #e7f5ff;
+      }
+    
+        .menubutton {
+          color: #e7f5ff;
+        }
+      
+        #sitegotimeDate,#sitegotimes,#footinfo,#footinfo a{
+          color: #dee2e6;
+        }
+      
