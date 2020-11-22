@@ -21,7 +21,7 @@
     
     <div id=side>
         <div class="avatar-border">
-            <img src="https://shirleyhz.github.io/images/avatar.png?v=1606024200069" class="avatar">
+            <img src="https://shirleyhz.github.io/images/avatar.png?v=1606026247279" class="avatar">
         </div>
         <div class="sitename">快跑猴哥来了</div>
         <span class="describtion" data-text='["永远热爱｜ 我的月亮永悬不落"]'>&nbsp;</span>
@@ -467,7 +467,7 @@
     add();
 
     function get() {
-        var t = JSON.parse('[{"author":"猴哥","img":"https://i.loli.net/2020/11/22/nwrtIdocKgFh4XE.jpg","text":"我的博客今天能建好吗？","time":"2020/11/21"},{"author":"猴哥","img":"https://i.loli.net/2020/11/22/8UWYgHINoBnRaOk.jpg","text":"11","time":"2020/11/22"},{"author":"猴哥","img":"","text":"发一个长说说试一试，为什么顺序是倒过来的？？？我要改代码！！！！！够不够长？？？发一个长说说试一试，为什么顺序是倒过来的？？？我要改代码！！！！！够不够长？？？发一个长说说试一试，为什么顺序是倒过来的？？？我要改代码！！！！！够不够长？？？发一个长说说试一试，为什么顺序是倒过来的？？？我要改代码！！！！！够不够长？？？发一个长说说试一试，为什么顺序是倒过来的？？？我要改代码！！！！！够不够长？？？发一个长说说试一试，为什么顺序是倒过来的？？？我要改代码！！！！！够不够长？？？","time":"2020/11/22"}]');
+        var t = JSON.parse('[{"author":"猴哥","img":"https://i.loli.net/2020/11/22/nwrtIdocKgFh4XE.jpg","text":"我的博客今天能建好吗？","time":"2020/11/21"},{"author":"猴哥","img":"https://i.loli.net/2020/11/22/8UWYgHINoBnRaOk.jpg","text":"发一个长说说试一试，为什么顺序是倒过来的？？？我要改代码！！！！！够不够长？？？发一个长说说试一试，为什么顺序是倒过来的？？？我要改代码！！！！！够不够长？？？发一个长说说试一试，为什么顺序是倒过来的？？？我要改代码！！！！！够不够长？？？发一个长说说试一试，为什么顺序是倒过来的？？？我要改代码！！！！！够不够长？？？发一个长说说试一试，为什么顺序是倒过来的？？？我要改代码！！！！！够不够长？？？发一个长说说试一试，为什么顺序是倒过来的？？？我要改代码！！！！！够不够长？？？","time":"2020/11/22"},{"author":"猴哥","img":"","text":"发一个长说说试一试，为什么顺序是倒过来的？？？我要改代码！！！！！够不够长？？？发一个长说说试一试，为什么顺序是倒过来的？？？我要改代码！！！！！够不够长？？？发一个长说说试一试，为什么顺序是倒过来的？？？我要改代码！！！！！够不够长？？？发一个长说说试一试，为什么顺序是倒过来的？？？我要改代码！！！！！够不够长？？？发一个长说说试一试，为什么顺序是倒过来的？？？我要改代码！！！！！够不够长？？？发一个长说说试一试，为什么顺序是倒过来的？？？我要改代码！！！！！够不够长？？？","time":"2020/11/22"}]');
         talkindex = t.length - 1;
         for (var i = t.length - 1; i >= 0; i--) {
             var d = {};
@@ -496,23 +496,21 @@
             if (talks[i].img != '') {
                 talkT.innerHTML += '\
             <div class="talk" v-for="t in talks"> \
-                <img src="' + talks[i].img + '" class="talkimg"> \
+                <img src="' + talks[i].img + '" class="talkimg">\
                 <div class="ainfo">\
                     <div class="ainfo-intro">\
-                        <img class="intro1" src="https://shirleyhz.github.io/images/avatar.png?v=1606024200069">\
+                        <img class="intro1" src="https://shirleyhz.github.io/images/avatar.png?v=1606026247279">\
                         <div class="author">' + talks[i].author + '</div>·\
                         <div class="time">' + talks[i].time + '</div>\
                     </div>\
                 </div>\
-                <div class="talkcontent">' + talks[i].text + '\
-                </div\>\
-            ';
+                <div class="talkcontent">' + talks[i].text + '</div>';
             } else {
                 talkT.innerHTML += '\
             <div class="talk" v-for="t in talks"> \
                 <div class="ainfo">\
                     <div class="ainfo-intro">\
-                        <img class="intro1" src="https://shirleyhz.github.io/images/avatar.png?v=1606024200069">\
+                        <img class="intro1" src="https://shirleyhz.github.io/images/avatar.png?v=1606026247279">\
                         <div class="author">' + talks[i].author + '</div>·\
                         <div class="time">' + talks[i].time + '</div>\
                     </div>\
