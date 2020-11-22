@@ -1872,6 +1872,7 @@ body {
   position: fixed;
   /* Sit on top */
   padding-top: 100px;
+  padding-bottom: 100px;
   /* Location of the box */
   left: 0;
   top: 0;
@@ -1890,8 +1891,8 @@ body {
 .modal-content {
   margin: auto;
   display: block;
-  width: 80%;
-  max-width: 700px;
+  max-width: 100%;
+  max-height: 100%;
 }
 /* 添加动画 */
 .modal-content,
@@ -1934,11 +1935,6 @@ body {
   cursor: pointer;
 }
 /* 小屏幕中图片宽度为 100% */
-@media only screen and (max-width: 700px) {
-  .modal-content {
-    width: 100%;
-  }
-}
 a {
   text-decoration: none;
 }
