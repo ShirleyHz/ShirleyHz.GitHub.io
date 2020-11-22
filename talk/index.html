@@ -492,7 +492,7 @@
     function show() {
         var talkT = document.getElementById("talkContainer");
         talkT.innerHTML = "";
-        for (var i = 0; i < talks.length; i++) {
+        for (var i = talks.length-1; i >=0; i--) {
             if (talks[i].img != '') {
                 talkT.innerHTML += '\
             <div class="talk" v-for="t in talks"> \
