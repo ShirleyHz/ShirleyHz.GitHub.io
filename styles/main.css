@@ -1680,7 +1680,7 @@ body {
 }
 #talkContainer .talk {
   width: 80%;
-  min-height: 130px;
+  max-height: 200px;
   height: auto;
   position: relative;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
@@ -1692,7 +1692,6 @@ body {
   border: 1px solid;
   border-radius: 10px;
   background: #FEFFF9;
-  overflow: auto;
 }
 .ainfo {
   padding: 20px;
