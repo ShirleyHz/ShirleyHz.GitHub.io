@@ -1758,10 +1758,10 @@ body {
 #talkContainer .talk .talkcontent {
   position: relative;
   margin-top: 30px;
-  margin-left: 30px;
+  margin-left: 5%;
   margin-bottom: 10px;
   word-wrap: break-word;
-  width: 75%;
+  width: 70%;
   text-align: left;
   font-size: 16px;
   min-height: 60px;
@@ -1784,7 +1784,7 @@ body {
 .talk .talkimg {
   position: absolute;
   height: 100%;
-  width: 170px;
+  width: 25%;
   right: 0;
 }
 #getmorebt {
