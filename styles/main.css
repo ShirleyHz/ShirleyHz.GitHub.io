@@ -682,8 +682,8 @@ hr {
 .postdate {
   margin-top: 10px;
   padding: 5px 10px 5px 10px;
-  background: rgba(56, 101, 185, 0.94);
-  color: white;
+  background: rgba(81, 121, 185, 0.71);
+  color: rgba(255, 255, 255, 0.71);
   font-weight: bold;
   border-radius: 10px;
   display: inline;
@@ -691,7 +691,7 @@ hr {
 }
 .poststatus {
   margin-left: 10px;
-  background: rgba(255, 173, 131, 0.87);
+  background: rgba(255, 190, 160, 0.71);
 }
 .posttag {
   margin-top: 10px;
@@ -707,11 +707,11 @@ hr {
   border: 2px solid;
   border-radius: 10px;
   padding: 5px 10px 5px 10px;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.7);
 }
 .postlink:hover {
   text-decoration: none;
-  color: #ffa2b3;
+  color: rgba(255, 177, 201, 0.71);
 }
 .postinfo {
   margin-left: 0;
@@ -1257,11 +1257,20 @@ tr:nth-child(2n) {
   color: black;
 }
 #texttitle {
-  padding-top: 50px;
+  padding-top: 20px;
 }
 .readercount {
   opacity: 0.7;
   font-weight: lighter;
+}
+.info {
+  text-align: center;
+  color: #8c8c8c;
+}
+.info a {
+  margin-left: 5px;
+  padding: 5px 10px 5px 10px;
+  color: rgba(81, 121, 185, 0.7);
 }
 @media screen and (min-width: 1200px) {
   .prev-post,
@@ -1382,11 +1391,7 @@ tr:nth-child(2n) {
   padding-bottom: 10px;
 }
 .postdetailimg {
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
   /*考虑浏览器兼容性*/
-  -moz-box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.5);
-  border-radius: 5px;
 }
 .donateContainer {
   display: flex;
@@ -1965,7 +1970,10 @@ a {
   }
 }
 .tags-container {
+  width: 100%;
   min-height: 100vh;
+  margin-left: 10%;
+  margin-right: 10%;
   position: absolute;
   padding-bottom: 70px;
   animation: fade-in;
@@ -1997,14 +2005,11 @@ a {
   text-align: left;
 }
 .tag {
-  position: absolute;
-  left: 20px;
   display: inline;
   float: left;
-  width: 10%;
+  width: 8%;
   margin-left: 2%;
   margin-top: 5%;
-  margin-right: 2%;
   border: 2px solid;
   border-radius: 7px;
   padding: 5px;

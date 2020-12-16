@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://shirley-hz-git-hub-io.vercel.app/</id>
     <title>快跑猴哥来了</title>
-    <updated>2020-12-16T03:09:15.976Z</updated>
+    <updated>2020-12-16T06:59:27.267Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://shirley-hz-git-hub-io.vercel.app/"/>
     <link rel="self" href="https://shirley-hz-git-hub-io.vercel.app/atom.xml"/>
@@ -74,9 +74,7 @@ ip nat outside source:*</strong></em><br>
 需要用 outside source 和其他同时命令同时实现。</li>
 </ul>
 <p>Cisco 路由器 配置 3 种 NAT 的主要命令：</p>
-<pre><code class="language-cpp">Cisco路由器配置3中NAT的主要命令：
-
-  静态NAT：
+<pre><code class="language-cpp">  静态NAT：
      1、指定NAT内部接口
          在内网相应接口的接口配置模式下执行：ip nat inside
      2、指定NAT外部接口
