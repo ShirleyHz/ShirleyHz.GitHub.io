@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://shirleyhz.github.io</id>
     <title>快跑猴哥来了</title>
-    <updated>2020-11-22T10:20:59.617Z</updated>
+    <updated>2020-12-16T02:40:02.532Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://shirleyhz.github.io"/>
     <link rel="self" href="https://shirleyhz.github.io/atom.xml"/>
@@ -10,6 +10,729 @@
     <logo>https://shirleyhz.github.io/images/avatar.png</logo>
     <icon>https://shirleyhz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 快跑猴哥来了</rights>
+    <entry>
+        <title type="html"><![CDATA[telnet+Tcl/python实现基于Web的NAT网络拓扑搭建及校验自动化]]></title>
+        <id>https://shirleyhz.github.io/b7I8Y22Cc/</id>
+        <link href="https://shirleyhz.github.io/b7I8Y22Cc/">
+        </link>
+        <updated>2020-12-16T02:09:42.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>转载自：https://blog.csdn.net/freeking101/article/details/77962312</strong></p>
+<p>NAT技术(一、二、三、四、五) 系列：<strong>https://blog.51cto.com/wwwcisco/category1.html</strong></p>
+<p>CCNA学习笔记之NAT：<strong>http://sweetpotato.blog.51cto.com/533893/1392884</strong><br>
+网络地址转换NAT原理及应用：<strong>http://blog.csdn.net/xiaofei0859/article/details/6630467</strong><br>
+NAT技术基本原理与应用：<strong>http://www.cnblogs.com/dongzhuangdian/p/5105844.html</strong><br>
+NAT地址转换原理全攻略：<strong>http://blog.csdn.net/lycb_gz/article/details/12079455</strong><br>
+NAT基本结构和分类：<strong>http://blog.csdn.net/lycb_gz/article/details/11999459</strong></p>
+<h1 id="nat">NAT</h1>
+<h2 id="一-概述">一、概述</h2>
+<p>​    NAT ( Network Address Translation ) 中文意思是&quot;网络地址转换&quot;，它是一个IETF(Internet Engineering Task Force, Internet工程任务组) 标准，允许一个整体机构以一个公用IP（Internet Protocol）地址出现在Internet上。顾名思义，它是一种把内部私有网络地址（IP地址）翻译成合法网络IP地址的技术。NAT 可以让那些使用私有地址的内部网络连接到Internet或其它IP网络上。NAT路由器在将内部网络的数据包发送到公用网络时，在IP包的报头把私有地址转换成合法的IP地址。</p>
+<p>RFC1918规定了三块专有的地址，作为私有的内部组网使用：</p>
+<ul>
+<li>A类：10.0.0.0—10.255.255.255    10.0.0.0/8</li>
+<li>B类：172.16.0.0—172.31.255.255  172.16.0.0/12</li>
+<li>C类：192.168.0.0—192.168.255.255 192.168.0.0/16</li>
+</ul>
+<p>这三块私有地址本身是可路由的，只是公网上的路由器不会转发这三块私有地址的流量；当一个公司内部配置了这些私有地址后，内部的计算机在和外网通信时，公司的边界路由会通过NAT或者PAT技术，将内部的私有地址转换成外网IP，外部看到的源地址是公司边界路由转换过的公网IP地址，这在某种意义上也增加了内部网络的安全性。</p>
+<p>​    Basic NAT是一种把一组IP地址映射成另一组IP地址的方法，映射的过程在IP中继设备上完成，对用户完全透明。NAPT则要复杂一些，它把许多（不能太多）IP地址连同TCP/UDP端口号映射到单独一个IP地址和端口号上。无论是Basic NAT还是NAPT都提供一种把内部的私有地址转换成在公网上可用的全球唯一IP地址的方法。</p>
+<p><strong>分类</strong></p>
+<figure data-type="image" tabindex="1"><img src="https://img-blog.csdn.net/20170913132011406" alt="img" loading="lazy"></figure>
+<p><strong>NAT有三种类型：</strong></p>
+<ol>
+<li><strong>静态 NAT</strong> ( Static NAT )（ <em><strong>*一对一*</strong></em> ）。将内部网络的私有IP地址转换为公有IP地址，IP地址对是一对一的，是一直不变的。<img src="https://img-blog.csdn.net/20170913142720836" alt="img" loading="lazy"></li>
+<li><strong>动态地址 NAT</strong> ( Pooled NAT )（<strong>多对多</strong>）。将内部网络的私有 IP 地址转换为公用 IP 地址时，IP 地址是不确定，随机的。所有被授权访问 Internet 的私有 IP 地址可随机转换为任何指定合法的 IP 地址。也就是说，只要指定哪些内部地址可以进行转换，以及用哪些合法地址作为外部地址时，就可以进行动态 NAT 转换。动态 NAT 是在路由器上配置一个外网 IP 地址池，当内部有计算机需要和外部通信时，就从地址池里动态的取出一个外网 IP，并将他们的对应关系绑定到 NAT 表中，通信结束后，这个外网 IP 才被释放，可供其他内部 IP 地址转换使用，这个 DHCP 租约 IP 有相似之处。当 ISP 提供的合法 IP 地址略少于网络内部的计算机数量时。可以采用动态转换的方式。<img src="https://img-blog.csdn.net/20170913142757616" alt="img" loading="lazy"></li>
+<li><strong>网络地址端口转换 NAPT</strong>（Network Address Port Translation）（Port-Level NAT）（ <strong>多对一</strong> ）。改变外出数据包的源端口并进行端口转换，采用端口多路复用方式。内部网络的所有主机均可共享一个合法外部 IP 地址实现对 Internet 的访问，可以最大限度地节约 IP 地址资源。同时，也可以隐藏网络内部的所有主机，有效避免来自 Internet 的攻击。因此，目前网络中应用最多的就是 PAT 规则。这是最常用的 NAT 技术，也是 IPv4 能够维持到今天的最重要的原因之一，它提供了一种多对一的方式，对多个内网 IP 地址，边界路由可以给他们分配一个外网 IP，利用这个外网 IP 的不同端口和外部进行通信。NAPT 与 动态NAT 不同，它将内部连接映射到外部网络中的一个单独的 IP 地址上，同时在该地址上加上一个由 NAT 设备选定的端口号。<img src="https://img-blog.csdn.net/20170913142845036" alt="img" loading="lazy"><br>
+NAPT 是使用最普遍的一种转换方式，在 HomeGW 中也主要使用该方式。它又包含两种转换方式：SNAT和DNAT。<br>
+(1) 源NAT（Source NAT，SNAT）：修改数据包的源地址。源NAT改变第一个数据包的来源地址，它永远会在数据包发送到网络之前完成，数据包伪装就是一具SNAT的例子。<br>
+(2) 目的NAT（Destination NAT，DNAT）：修改数据包的目的地址。Destination NAT刚好与SNAT相反，它是改变第一个数据懈的目的地地址，如平衡负载、端口转发和透明代理就是属于DNAT。</li>
+</ol>
+<p>对于 <strong>NAT</strong> ( <strong>网络地址转换</strong> ) 技术来讲，最重要的一点是，在配置 NAT 的路由器上形成了 NAT 转换表，这个转换表的形成是非常关键的。配置 NAT 后，能形成正确的转换表，那么我们的工作就算成功了。</p>
+<p>NAT 的三个方向：<br>
+NAT 在outside口生效，所有在inside口需要先路由，在 outside 口先 nat。<br>
+ip nat inside source:<br>
+将内部局部地址转换为内部全局地址;数据方向inside-&gt;outside,在outside上执行转换;<br>
+ip nat inside destination:<br>
+将内部全局地址转换为内部局部地址;数据方向outside-&gt;inside,在outside上执行转换<br>
+ip nat outside source:<br>
+将外部全局地址转换为外部局部地址;数据方向outside-&gt;inside,在outside上执行转换;</p>
+<p>NAT 的应用分类：</p>
+<p>ip nat source：</p>
+<ul>
+<li>（1） <strong>静态 nat</strong> 的映射：永远一个 ip 对应另外一个 ip 。<br>
+命令：<strong>ip nat inside source static A.B.C.D A.B.C.D</strong></li>
+<li>（2） <strong>动态 nat</strong> 的映射：每次一个 IP 会对应另外一个公网的 IP；<br>
+命令：<strong>ip nat inside source list 2 pool qing</strong></li>
+<li>（3） <strong>动态 PAT</strong> 映射：pool 里面只有一个 IP。<br>
+命令：<strong>ip nat inside source list 2 pool qing overload</strong></li>
+<li>（4） <strong>静态 PAT</strong> 映射：<br>
+命令：<br>
+<strong>ip nat inside source list 3 interface fastEthernet 0/0 overload<br>
+ip nat inside destination:</strong><br>
+tcp 负载均衡，外网主动发起流量访问内网服务器。只用动态，没有静态。<br>
+<em><strong>*ip nat inside destination list 10 pool feng<br>
+ip nat outside source:*</strong></em><br>
+当两端同时做 nat 既 inside 和 outside 需要同时翻译并出现地址冲突的时候，<br>
+需要用 outside source 和其他同时命令同时实现。</li>
+</ul>
+<p>Cisco 路由器 配置 3 种 NAT 的主要命令：</p>
+<pre><code class="language-cpp">Cisco路由器配置3中NAT的主要命令：
+
+  静态NAT：
+     1、指定NAT内部接口
+         在内网相应接口的接口配置模式下执行：ip nat inside
+     2、指定NAT外部接口
+         在外网相应接口的接口配置模式下执行：ip nat outside
+     3、在内部本地地址与内部全局地址之间建立静态地址转换关系：
+         ip nat insde source static 内部本地地址 内部全局地址
+
+  动态地址NAT：
+     1、指定NAT内部接口
+         在内网相应接口的接口配置模式下执行：ip nat inside
+     2、指定NAT外部接口
+         在外网相应接口的接口配置模式下执行：ip nat outside
+     3、在全局配置模式下，定义一个标准的access-list规则，声明允许哪些内部本地地址可以进行动态地址转换：
+         access-list list-number permit 源地址 通配符
+         其中，list-number为1－99之间的一个任意整数。
+     4、在全局配置模式下，定义内部全局地址池：
+         ip nat pool 地址池名  起始IP地址  终止IP地址  netmask  子网掩码
+         其中，地址池名可以任意设定，但最好有一定的说明意义。
+     5、在全局配置模式下，定义符合先前定义的access-list规则的IP数据包与先前定义的地址池中的IP地址进行转换：
+         ip nat inside source list list-number pool 内部全局地址池名
+
+  网络地址端口转换NAPT：
+     1、指定NAT内部接口
+         在内网相应接口的接口配置模式下执行：ip nat inside
+     2、指定NAT外部接口
+         在外网相应接口的接口配置模式下执行：ip nat outside
+     3、在全局配置模式下，定义内部全局地址池：
+         ip nat pool  地址池名  起始IP地址  终止IP地址  netmask  子网掩码
+         其中，地址池名可以任意设定，但最好有一定的说明意义。
+     4、在全局配置模式下，定义一个标准的access-list规则，声明允许哪些内部本地地址可以进行复用地址转换：
+         access-list list-number permit 源地址 通配符
+         其中，list-number为1－99之间的一个任意整数。
+     5、在全局配置模式下，定义符合先前定义的access-list规则的IP数据包与先前定义的地址池中的IP地址进行复用地址转换：
+         ip nat inside source list list-number pool 内部全局地址池名 overload
+</code></pre>
+<h2 id="二-工作原理">二、工作原理</h2>
+<p>了解原理之前先了解下 NAT 术语。</p>
+<p>在配置了 NAT 的路由器上，可以把整个网络分成两部分：*<strong>内部网络*</strong> 和 *<strong>外部网络*</strong>。</p>
+<p><strong>NAT 技术中有四个术语：</strong></p>
+<ol>
+<li>内部本地地址（Inside Local）：内网中设备所使用的IP地址</li>
+<li>内部全局地址（Inside Global）：对于外部网络来说，局域网内部主机所表现的 IP 地址。</li>
+<li>外部本地地址（Outside Local）：外部网络主机的真实地址。</li>
+<li>外部全局地址（Outside Global）：对于内部网络来说，外部网络主机所表现的 IP 地址。外网设备所使用的真正的地址。</li>
+</ol>
+<figure data-type="image" tabindex="2"><img src="https://img-blog.csdn.net/20170913113902295" alt="img" loading="lazy"></figure>
+<p>local 、global 是相对于端口状态说的，local 是 inside 部分可以被路由的，global 是 outside 部分可以被路由的。</p>
+<p>网络地址转换常常和代理服务搞混，但是它们之间有明确的不同。NAT 对源和目的计算机都是透明的。没有任何一方会意识到它正在和第三方设备打交道。但是代理服务却不是透明的。源计算机知道它正向代理服务器发起一个请求，而且你还必须进行配置才能这样做。目的计算机会认为代理服务器就是与它直接通信的源计算机。还有，代理服务通常工作在 OSI 参考模型的第 4 层 (传输层) 或更高，而 NAT 工作在第 3 层 (网络层)。由于代理服务工作在更高层，所以通常它将比 NAT 要慢。</p>
+<p>NAT 工作在 OSI 参考模型的网络层 (第3层) 是有道理的，因为路由器就工作在这一层：</p>
+<figure data-type="image" tabindex="3"><img src="https://img-blog.csdn.net/20170913133052853" alt="img" loading="lazy"></figure>
+<p><strong>NAT 原理</strong></p>
+<p>​    NAT设备维护一个状态表，用来把非法的IP地址映射到合法的IP地址上去。每个包在NAT设备中都被翻译成正确的IP地址，发往下一级，这意味着给处理器带来了一定的负担。但对于一般的网络来说，这种负担是微不足道的。在运行NAT的路由器中，当数据包被传送时，NAT可以转换数据包的IP地址和TCP/UDP数据包的端口号。设置NAT功能的路由器至少要有一个Inside（内部）端口和一个Outside（外部）端口。内部端口连接内网的用户，外部端口一般连接到Internet。当IP数据包离开内部网络时，NAT负责将内网IP源地址（通常是专用地址）转换为合法的公共IP地址。当IP数据包进入内网时，NAT将合法的公共IP目的地址转换为内网的IP源地址。</p>
+<p>​    NAT的基本工作原理是：当私有网主机和公共网主机通信的IP包经过NAT网关时，将IP包中的源IP或目的IP在私有IP和NAT的公共IP之间进行转换。</p>
+<p>​    当内部网络中的一台主机想传输数据到外部网络时，它先将数据包传输到NAT路由器上，路由器检查数据包的报头，获取该数据包的源IP信息，并从它的NAT映射表中找出与该IP匹配的转换条目，用所选用的内部全局地址（全球唯一的IP地址）来替换内部局部地址，并转发数据包。</p>
+<p>​    当外部网络对内部主机进行应答时，数据包被送到NAT路由器上，路由器接收到目的地址为内部全局地址的数据包后，它将用内部全局地址通过NAT映射表查找出内部局部地址，然后将数据包的目的地址替换成内部局部地址，并将数据包转发到内部主机。</p>
+<p>​    其实主要就是 修改 IP 数据包中的源 IP 地址，或目的 IP 地址。主要目的是把 RFC1918所提议的私有地址转变成在 Internet 上可路由的公有合法地址。对于某些有限的应用（如 DNS、 FTP 等），它也可以修改 IP 数据包有效载荷中的地址。由于应用的复杂性， NAT 目前支持的应用有限，当然，如果需要，完全可以针对新的应用做相应的开发工作。</p>
+<p>​    总体来说，NAT进行地址转换的过程就是“本地地址”与“全局地址”之间的转换过程，无论数据包是从内部网络发往外部网络，还是从外部网络发往内部网络。不同的只是本地地址和全局地址所对应的网络不同，以及数据包重新封装的源和目的地址不同。具体如图所示。</p>
+<figure data-type="image" tabindex="4"><img src="https://img-blog.csdn.net/20170913123017441" alt="img" loading="lazy"></figure>
+<p><strong>NAT基本地址转换原理</strong></p>
+<p>这个过程是通过NAT中的本地址与全局地址映射条目来实现的，所以事先要在NAT路由器上配置这样的映射条目。</p>
+<p><strong>NAT中的转换方式:</strong></p>
+<ol>
+<li>从内网中设备上发出的IP包是以“inside local address”作为源地址，以“outside local address”作为目的地址。当数据包到达NAT设备的“inside”接口后，地址分别被翻译成“inside global address”和“outside global address”并从“outside”接口送出。</li>
+<li>外网设备上发出的IP包以“outside global address”作为源地址，以“inside global address”作为目的地址。当数据包到达NAT设备的“outside”接口后，地址分别被翻译成“outside local address”和“inside local address”并从“inside”接口送出。</li>
+</ol>
+<p>​    当内部网络用户访问外部网络时，所进行的是“内部本地地址”和“内部全局地址”之间的转换。<br>
+​    在NAT路由器接收到来自内部网络主机发送的数据包时，其源IP地址（SA）为“内部本地地址”，目的IP地址（DA）为“外部本地地址”。当数据包被转发到外部网络时，数据包的源IP地址（SA）就会转变为“内部全局地址”，而目的IP地址（DA）被转变为“外部全局地址”。也就是把数据包的所有源IP地址（SA）和目的IP地址（DA）全部由本地地址转换为全局地址。如图6-9上部分数据包IP地址转换示意图。<br>
+​    相反，当外部网络用户访问内部网络时，所进行的是“外部本地地址”和“外部全局地址”之间的转换。<br>
+​    在NAT路由器接收到来自外部网络主机发送的数据包时，其源IP地址（SA）就是“外部全局地址”，目的IP地址（DA）就是“内部全局地址”。相当于由内部网络向外部网络发送数据包时数据包中的源IP地址（SA）和目的IP地址（DA）的互换。而当数据包被路由器转发到本地网络时，源IP地址（SA）被转变为“外部本地地址”，目的IP地址（DA）被转变为“内部本地地址”，也相当于由内部网络向外部网络发送数据包时数据包中的源IP地址（SA）和目的IP地址（DA）的互换。如图6-9下部分数据包IP地址转换示意图</p>
+<figure data-type="image" tabindex="5"><img src="https://img-blog.csdn.net/20170913123342635" alt="img" loading="lazy"></figure>
+<p><strong>NAT基本IP地址转换原理</strong></p>
+<p>以上是从总体上介绍NAT的IP地址转换原理的，实际NAT应用有时并不需要对源IP地址和IP地址进行全面替换，仅需要对源IP地址或者仅需要对目的IP地址进行转换即可达到所需的目的。下面予以介绍。</p>
+<p><strong>内部地址NAT转换原理</strong></p>
+<p>​    多数情况下使用NAT的目的就是为了使内部网络中的多个用户能使用一个注册IP地址访问外部网络，所以仅需要配置内部地址NAT转换。即通过ip nat inside source命令实现“内部本地地址”到“内部全局地址”之间的转换（既可以采用静态NAT方式实现，也可以采取动态NAT方式实现），只需要定义内部本地址与内部本局地址的映射。</p>
+<figure data-type="image" tabindex="6"><img src="https://img-blog.csdn.net/20170913123623345" alt="img" loading="lazy"></figure>
+<p><strong>一个简单的 NAT 转换示例</strong></p>
+<p>这是一个简单的NAT转换示例。要实现以下目的：当NAT路由器的内部网络s0接口上接收到一个源地址为内部本地地址10.10.10.1，目的IP地址为外部本地地址171.16.68.1的数据包时，在转发到s1接口时，原来数据包源地址的内部本地地址10.10.10.1被转换成内部全局地址171.16.68.5，但目的地址不变，然后继续发送。在这个过程中，所进行的只是数据包中源IP地址的转换，由内部本地地址向内部全局地址转换，且只是内部地址之间的转换。</p>
+<p>​    相反，当在NAT路由器的外部网络接口s1上接收源地址为172.16.68.1外部本地地址，目的地址为内部全局地址172.16.68.5的外部服务器响应数据包时，目的地址将被转换成10.10.10.1这个内部本地地址，然后继续发送。在这个过程中，所进行的只是数据包中目的IP地址的转换，由内部全局地址向内部本地地址转换，也只是内部地址之间的转换。</p>
+<p>下面仅以静态NAT转换方式为例介绍内部地址转换的配置步骤，详细的NAT配置方法将在本章后面具体介绍。</p>
+<p>（1）使用“ip nat inside source static”全局配置命令启用基于内部源IP地址的静态NAT IP地址转换。也就是定义内部本地地址和内部全局地址，使它们之间形成一一对应的映射关系。</p>
+<pre><code class="language-css">Router(config)#ip nat inside source static 10.10.10.1 171.16.68.5   
+ !--- 在内部本地地址10.10.10.1与内部全局地址171.16.68.5之间建立静态NAT映射关系，
+ !--- 使内部网络主机知道要以171.16.68.5这个地址到达外部网络主机
+</code></pre>
+<p>（2）使用以下两条语句配置路由器的s0为NAT的内部网络接口。</p>
+<pre><code class="language-lua">Router(config)#interface s0    !---  进入s0串口配置模式
+Router(config-if)#ip nat inside    !--- 把s0串口指定为内部网络接口
+</code></pre>
+<p>（3）使用以下两条语句配置路由器的s1为NAT的外部网络接口。</p>
+<pre><code class="language-lua">Router(config)#interface s1    !--- 进入s1串口配置模式
+Router(config-if)#ip nat outside   !--- 把s1串口指定为外部网络接口
+</code></pre>
+<p>（4）使用show ip nat translations特权模式命令验证上述进行的路由器NAT配置。输出信息中显示以上配置的NAT条目配置为：内部本地地址为10.10.10.1，内部全局地址为171.16.68.5。这与上面的配置是一致的，证明配置是成功的。</p>
+<pre><code class="language-css">Router#show ip nat translations   !--- 在特权模式下显示当前路由器NAT配置
+ 
+Pro     Inside global      Inside local       Outside local      Outside global
+---     171.16.68.5        10.10.10.1            ---                 ---
+</code></pre>
+<p>此时如果对外部网络目的主机进行ping操作，就会有数据包从内部网络转发到外部网络。然后再在路由器特权模式下执行“show ip nat translations”命令，显示的NAT信息如下。多了一条icmp协议类型数据包（执行ping操作后加的）显示，但因为此时没有配置外部网络的本地地址和全局地址，所以显示的外部本地地址和外部全局地址都是一样的，都是ping操作目的主机地址171.16.68.1。</p>
+<pre><code class="language-css">Router#show ip nat translations
+ 
+Pro       Inside global          Inside local        Outside local      Outside global
+icmp     171.16.68.5:15         10.10.10.1:15       171.16.68.1:15     171.16.68.1:15
+---       171.16.68.5            10.10.10.1             ---                 ---
+</code></pre>
+<p>通过以上配置后，从内部网络发往外部网络的数据包只是源地址（SA）将在经过路由器后进行转换（由内部本地地址10.10.10.1转换成内部全局地址171.16.68.5），但目标地址（DA）不变，但从外部网络发往内部网络的应答数据包的源地址没有改变，只是经过路由器后的数据包目的地址发生了转换（由内部全局地址172.16.68.5转换成内部本地地址10.10.10.1），但源地址（SA）不变。因为此时还没有为NAT路由器配置外部网络的本地地址和全局地址转换。<br>
+此时，数据包在内、外部网络中的源地址、目的地址的转换方式参如图</p>
+<figure data-type="image" tabindex="7"><img src="https://img-blog.csdn.net/20170913124314924" alt="img" loading="lazy"></figure>
+<p>**【经验之谈】**在内部地址的NAT转换中，无论数据包来自哪里，数据包中地址变化的只是内部地址之间的转换。但要注意，地址变化所对应的是源地址，还是目的地址是要看数据包是来自内部网络，还是来自外部网络：如果是来自内部网络，转换是源地址；如果是来自外部网络，转换的是目的地址。</p>
+<p><strong>外部地址NAT转换原理</strong></p>
+<p>当公司服务器位于内部网络，使用内部网络私有IP地址，为了方便外部网络用户对内部网络服务器进行访问，则需要使用ip nat outside source命令配置“外部全局地址”与“外部本地地址”之间的转换（既可以采用静态NAT方式实现，也可以采取动态NAT方式实现）。外部地址NAT转换与上节介绍的内部地址NAT转换是相反的，它仅需要定义外部地址（包括外部本地地址和外部全局地址）。</p>
+<p>下面同样以上面那个简单的NAT转换示例进行介绍。本示例要实现的目的是：当NAT路由器外部网络接口s1接收到来自外部网络用户发送的源IP地址为外部全局地址171.16.68.1，目的地址为外部本地地址10.10.10.1的数据包在被路由器转发到s0接口时，数据包中的源IP地址转变为外部本地地址10.10.10.5（即由外部全局地址转换成外部本地地址），目的IP地址不变，即也只是源IP地址的转换；而由内部网络用户发送的响应数据包中，却只是目的IP地址（即由外部本地地址转换为外部全局地址）的转换，源IP地址不变。<br>
+下面仅以静态NAT转换方式为例介绍外部地址NAT转换的配置步骤，详细的NAT配置方法将在本章后面具体介绍。</p>
+<p>（1）使用ip nat outside source static全局配置命令启用基于外部源IP地址的静态NAT IP地址转换。也就是定义外部全局地址和外部本地地址之间的映射关系。</p>
+<pre><code class="language-css">Router(config)#ip nat outside source static 171.16.68.1 10.10.10.5     
+    !--- 在外部全局地址171.16.68.1与外部本地地址10.10.10.5之间建立静态NAT转换关系，
+    !--- 使外部网络主机知道要以10.10.10.1这个地址到达内部网络主机
+</code></pre>
+<p>（2）使用以下两条语句配置路由器的s0作为NAT的内部网络接口。</p>
+<pre><code class="language-less">Router(config)#interface s0
+Router(config-if)#ip nat inside
+</code></pre>
+<p>（3）使用以下两条语句配置路由器的s1作为NAT的外部网络接口。</p>
+<pre><code class="language-less">Router(config)#interface s1
+Router(config-if)#ip nat outside
+</code></pre>
+<p>【注意】对于特定的NAT网络来说，路由器上的内、外部网络接口是固定的，不会随着通信方向的改变而改变。如在上节介绍的内部地址的NAT转换示例中，我们同样是把s0接口作为内部网络接口，s1接口作为外部网络接口。</p>
+<p>（4）使用show ip nat translations特权模式命令验证上述进行的路由器NAT配置。从中可以看出，此时NAT的外部本地地址为10.10.10.5，外部全局地址为171.16.68.1。这与上面的配置是一致的，证明配置是成功的。</p>
+<pre><code class="language-css">Router#show ip nat translations
+ 
+Pro    Inside global          Inside local          Outside local      Outside global
+         --- ---                   ---               10.10.10.5          171.16.68.1
+</code></pre>
+<p>同样，如果此时执行一个从外部网络主机（171.16.68.1）到内部网络主机（10.10.10.1）的ping操作，然后再在路由器特权模式下执行“show ip nat translations”命令，则显示如下结果。因为此时仅配置了外部本地地址和外部全局地址，所以结果中显示的内部本地地址和全局地址都是一样的，都是ping操作目的主机地址10.10.10.1。</p>
+<pre><code class="language-css">Router#show ip nat translations
+ 
+Pro        Inside global       Inside local         Outside local        Outside global
+             --- ---             ---                10.10.10.5           171.16.68.1
+icmp       10.10.10.1:37       10.10.10.1:37      10.10.10.5:37        171.16.68.1:37
+</code></pre>
+<p>与上节介绍的仅配置内部地址相反，此处从外部网络发往内部网络的数据包的源IP地址（SA）将在经过路由器后进行转换（由外部全局地址171.16.68.1转换成外部本地地址10.10.10.5），但目标地址（DA）不变；但从内部网络发往外部网络的响应数据包的源IP地址没有改变，只是经过路由器后的数据目的IP地址发生了改变（由外部本地地址10.10.10.5转换成外部全局地址171.16.68.1）。因为此时还没有为NAT路由器配置内部本地地址和内部全局地址转换。此时，数据包在内、外部网络中的源IP地址、目的IP地址的转换方式如图6-12所示。</p>
+<p>**【经验之谈】**在仅进行外部地址NAT转换时，无论数据包来自哪里，数据包中地址变化的只是外部地址之间的转换。同样也需注意，地址变化所对应的是源IP地址，还是目的IP地址是要看数据包是来自内部网络，还是来自外部网络：如果来自内部网络，转换是目的IP地址；如果来自外部网络，转换的是源IP地址。这与前面的内部地址NAT转换是对应相反的。</p>
+<figure data-type="image" tabindex="8"><img src="https://img-blog.csdn.net/20170913125038588" alt="img" loading="lazy"></figure>
+<p><strong>外部地址NAT转换示例</strong></p>
+<p><strong>内/外部地址NAT转换原理</strong></p>
+<p>​    下面介绍同时进行内、外部地址NAT转换原理及基本配置步骤。它需要同时使用ip nat inside source命令定义“内部全局地址”与“内部本地地址”之间的转换，及使用ip nat outside source命令定义“外部全局地址”和“外部本地地址”之间的转换（既可以采用静态NAT方式实现，也可以采取动态NAT方式实现）。这样，无论数据包是从哪个方向发送的，数据包中的源地址和目的地址都将同时发生变化。主要应用于重叠网络（Overloading Network）中的NAT应用中。具体配置方法将在本章6.6节介绍。<br>
+​    同样以那个简单的NAT转换示例的基本网络结构为例进行介绍。在下面的示例中，通过配置可以实现：当NAT路由器内部网络接口s0接收到来自内部网络，源IP地址为内部本地地址10.10.10.1，目的IP地址为外部本地地址10.10.10.5的数据包，在转发到s1接口前，将这个数据包中的源IP地址将转换成内部全局地址171.16.68.5，目的IP地址将被转换成外部全局地址171.16.68.1。<br>
+​    当NAT路由器外部接口s1接收到来自外部网络，源IP地址为外部全局地址171.16.68.1，目的地址为内部全局地址172.16.68.5的数据包时，将源IP地址转换成外部本地地址10.10.10.5，将目的IP地址将被转换成内部本地址10.10.10.1。<br>
+​    下面仅以静态NAT转换方式（可以采用动态NAT转换方式）为例介绍内、外部地址同时转换的配置步骤，详细的静态，或者动态NAT转换配置方法将在本章后面具体介绍。</p>
+<pre><code class="language-css">Router(config)#ip nat inside source static 10.10.10.1 171.16.68.5    
+!--- 在内部本地地址10.10.10.1与内部全局地址171.16.68.5之间建立静态NAT映射关系，
+!--- 使内部网络主机知道要以171.16.68.5这个地址到达外部网络主机
+
+
+Router(config)#ip nat outside source static 171.16.68.1 10.10.10.5    
+!--- 在外部全局地址171.16.68.1与外部本地地址10.10.10.5之间建立静态NAT映射关系，
+!--- 使外部网络主机知道要以10.10.10.5这个地址到达内部网络主机
+
+Router(config)#interface s 0
+Router(config-if)#ip nat inside
+Router(config-if)#end
+Router(config)#interface s 1
+Router(config-if)#ip nat outside
+Router(config-if)#end
+Router(config)# end
+Router#show ip nat translations
+ 
+Pro   Inside global      Inside local         Outside local        Outside global
+         --- ---           ---                 10.10.10.5           171.16.68.1
+       171.16.68.5        10.10.10.1            ---                    ---
+</code></pre>
+<p>同样，如果此时分别执行一个从内部主机到外部主机，以及从外部主机到内部主机的ping操作，然后再在路由器特权模式下执行“show ip nat translations”命令，则显示如下结果。因为此时同时配置了内、外部本地地址和全局地址，所以结果中显示了两条NAT配置项，分别显示了与外部网络和内部网络中的本地地址和全局地址转换对应的ping操作icmp消息：与外部本地地址和全局地址对应的Ping操作ICMP消息中显示内部网络中的本地地址和全局地址是一样的，而与内部网络本地地睛和全局地址对应的Ping操作ICMP消息中显示外部网络中的本地地址和全局地址是一样的，都是对应的Ping操作目的主机地址。</p>
+<pre><code class="language-css">Router#show ip nat translations
+ 
+Pro Inside global      Inside local       Outside local      Outside global
+---      ---                ---          10.10.10.5       171.16.68.1
+icmp 10.10.10.1:4      10.10.10.1:4       10.10.10.5:4       171.16.68.1:4
+icmp 171.16.68.5:39    10.10.10.1:39      171.16.68.1:39     171.16.68.1:39
+---  171.16.68.5       10.10.10.1           ---                 ---
+</code></pre>
+<p>经过以上配置后，数据包发送（无论是从哪个方面发送的）时不仅源IP地址会发生变化，目标IP地址也会同时发生变化，如图6-13所示。<br>
+在由内部网络向外部网络发送的数据包中，源IP地址是由内部本地地址（10.10.10.1）转换成内部全局地址（172.16.68.5），目的IP地址由外部本地地址（10.10.0.5）转换成外部全局地址（171.16.68.1）；在由外部网络向内部网络发送的数据包中，源IP地址是由外部全局地址（171.16.68.1）转换成外部本地地址（10.10.0.5），目的IP地址由内部全局地址（172.16.68.5）转换成内部本地地址（10.10.10.1）。两个方向的数据包中的源IP地址和目的IP地址的转换分别如图6-14和图6-15所示。</p>
+<figure data-type="image" tabindex="9"><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2Jsb2cuY2hpbmF1bml4Lm5ldC9hdHRhY2htZW50LzIwMTMwOS8yNy8xMDY1OTAyMV8xMzgwMjQyMjEwY0kzNS5qcGc?x-oss-process=image/format,png" alt="img" loading="lazy"></figure>
+<p>图6-13 同时配置了内、外部地址转换后的NAT转换示例</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2Jsb2cuY2hpbmF1bml4Lm5ldC9hdHRhY2htZW50LzIwMTMwOS8yNy8xMDY1OTAyMV8xMzgwMjQyMjI4NXBFai5qcGc?x-oss-process=image/format,png" alt="img" loading="lazy"><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2Jsb2cuY2hpbmF1bml4Lm5ldC9hdHRhY2htZW50LzIwMTMwOS8yNy8xMDY1OTAyMV8xMzgwMjQyMjM4MHpIMC5qcGc?x-oss-process=image/format,png" alt="img" loading="lazy"></p>
+<p>图6-14 数据包从内部网络发到外部网络时的地址转换方式 图6-15 数据包从外部网络发到内部网络时的地址转换方式</p>
+<p>从图6-14和图6-15可以看出，图6-14中的源IP地址转换过程恰好是图6-15中的目的地址转换的反过程。同理，图6-14中的目的IP地址转换过程恰好是图6-15中的源IP地址转换的反过程。</p>
+<p>​    另外，经过细心分析我们可以发现，在由内部网络发往外部网络的数据包中所进行的地址转换都是由本地地址转换为全局地址，也就是都是由内部网络一侧的地址向外部网络一侧的地址转换；相反，在由外部网络发往内部网络的数据包中所进行的地址转换都是由全局地址转换为本地地址，也就是都是由外部网络一侧的地址向内部网络一侧的地址转换。</p>
+<p>NAT配置中的常用命令：</p>
+<pre><code class="language-delphi">ip nat {inside|outside}：接口配置命令。以在至少一个内部和一个外部接口上启用NAT。
+ 
+ip nat inside source static local-ip global-ip
+：全局配置命令。在对内部局部地址使用静态地址转换时，用该命令进行地址定义。 
+
+access-list access-list-number {permit|deny} local-ip-address
+：使用该命令为内部网络定义一个标准的IP访问控制列表。 
+
+ip nat pool pool-name start-ip end-ip netmask netmask [type rotary]
+：使用该命令为内部网络定义一个NAT地址池。 
+
+ip nat inside source list access-list-number pool pool-name [overload]
+：使用该命令定义访问控制列表与NAT内部全局地址池之间的映射。 
+
+ip nat outside source list access-list-number pool pool-name [overload]
+：使用该命令定义访问控制列表与NAT外部局部地址池之间的映射。 
+
+ip nat inside destination list access-list-number pool pool-name
+：使用该命令定义访问控制列表与终端NAT地址池之间的映射。 
+
+show ip nat translations           ： 显示当前存在的NAT转换信息。 
+show ip nat statistics             ： 查看NAT的统计信息。 
+show ip nat translations verbose   ： 显示当前存在的NAT转换的详细信息。 
+debug ip nat                       ： 跟踪NAT操作，显示出每个被转换的数据包。 
+Clear ip nat translations *        :  删除NAT映射表中的所有内容.
+</code></pre>
+<h2 id="三-基本配置">三、基本配置</h2>
+<ul>
+<li>1、 静态转换：Router(config)#ip nat inside source static 内部本地地址 内部全局地址</li>
+<li>2、 动态转换：<br>
+Router(config)#ip nat pool 地址池 起始地址 最后地址 netmask 子网掩码<br>
+Router(config)#access-list 表号 permit 网络号 反掩码<br>
+Router(config)#ip nat inside source list 表号 pool 地址池</li>
+<li>3、 PAT：<br>
+Router(config)#access-list 表号 permit 网络号 反掩码<br>
+Router(config)#ip nat inside source list 表号 interface 外部接口</li>
+</ul>
+<h2 id="四-简单案例">四、简单案例</h2>
+<p>如下图所示，一个中小型企业网络，使用一台路由器和外部相连接，企业有 WWW 服务器和 FTP 服务器，用来提供给外部用户访问。企业内部员工也需要和Internet 连接。如果企业能够申请到多个公网地址（六个公网地址： 202.1.1.1-202.1.1.6）。</p>
+<figure data-type="image" tabindex="10"><img src="https://img-blog.csdn.net/20170913101122387" alt="img" loading="lazy"></figure>
+<p>配置命令和命令解释：</p>
+<pre><code class="language-yaml">配置：根据企业目前需求，我们可以做如下配置：（假设 ISP 端路由器使用 202.1.1.6）
+Router(config)#int e0                                              (1)
+Router(config-if)#ip add 10.1.1.254 255.255.255.0
+Router(config-if)#ip nat inside
+Router(config)#int e1
+Router(config-if)#ip add 202.1.1.1 255.255.255.248
+Router(config-if)#ip nat outside
+Router(config)#ip nat inside source static 10.1.1.1 202.1.1.2       (2)
+Router(config)#ip nat inside source static 10.1.1.2 202.1.1.3       (3)
+Router(config)#access-list 1 permit 10.1.1.0 0.0.0.255              (4)
+Router(config)#ip nat inside source list 1 interface e1 overload    (5)
+Router(config)#ip route 0.0.0.0 0.0.0.0 202.1.1.6                   (6)
+
+
+命令解释：
+（1）：配置路由器接口 IP 地址及标记 NAT 的内部端口和外部端口
+（2）：当外部用户访问服务器 202.1.1.2，路由器使用静态 NAT 的方式转到 10.1.1.1
+（3）：当外部用户访问服务器 202.1.1.3，路由器使用静态 NAT 的方式转到 10.1.1.2
+（4）：配置标准访问控制列表，匹配内部 10.1.1.0/24 网络的主机
+（5）：配置 PAT，允许内部 10.1.1.0/24 用户能够进行 NAT 转换
+（6）：配置静态路由，使经过 NAT 转换后的数据包能够发送至 ISP
+
+注意事项：当配置静态 NAT 后， NAT 转换表中就会形成转换条目。动态 NAT和 PAT 在配置映射后，在转换表中并没有形成条目。
+          当内部符合访问控制列表1 条件的数据包到达路由器后，触发转换条件，该数据包要求查找转换表，
+          如果转换表中有转换条目存在，使用该条目转换，如果没有转换条目，则根据映射创建条目并转换
+</code></pre>
+<h1 id="nat-技术二">NAT 技术二</h1>
+<h2 id="一-端口地址重定向">一、 端口地址重定向：</h2>
+<p>如图所示，该企业申请 ADSL 上网，只获得了一个公有合法 IP 地址。为了企业的应用，可以使用端口地址重定向功能来完成。</p>
+<figure data-type="image" tabindex="11"><img src="https://img-blog.csdn.net/20170913101641381" alt="img" loading="lazy"></figure>
+<p>配置命令和命令解释</p>
+<pre><code class="language-yaml">Router(config)#int e0                                                     (1)
+Router(config-if)#ip add 10.1.1.254 255.255.255.0
+Router(config-if)#ip nat inside
+Router(config)#int e1
+Router(config-if)#ip add 202.1.1.1 255.255.255.252
+Router(config-if)#ip nat outside
+Router(config)#ip nat inside source static tcp 10.1.1.1 80 202.1.1.1 80    (2)
+Router(config)#ip nat inside source static tcp 10.1.1.2 21 202.1.1.1 21    (3)
+Router(config)#ip nat inside source static tcp 10.1.1.2 20 202.1.1.1 20
+Router(config)#access-list 1 permit 10.1.1.0 0.0.0.255                     (4)
+Router(config)#ip nat inside source list 1 interface e1 overload           (5)
+Router(config)#ip route 0.0.0.0 0.0.0.0 202.1.1.2                          (6)
+
+命令解释：
+（1）：配置路由器接口 IP 地址及标记 NAT 的内部端口和外部端口
+（2）：当外部用户访问服务器 202.1.1.1:80，路由器使用静态 NAT 的方式转到 10.1.1.1:80
+（3）：当外部用户访问服务器 202.1.1.1:21，路由器使用静态 NAT 的方式转到 10.1.1.1:21
+      （由于 FTP 问题较复杂，这儿仅以一种 FTP 的应用为例）
+（4）：配置标准访问控制列表，匹配内部 10.1.1.0/24 网络的主机
+（5）：配置 PAT，允许内部 10.1.1.0/24 用户能够进行 NAT 转换
+（6）：配置静态路由，使经过 NAT 转换后的数据包能够发送至 ISP
+</code></pre>
+<h2 id="二-地址交叉地址重叠">二、 地址交叉（地址重叠）：</h2>
+<p>如果两个网络当前的网络地址出现相同的情况，且目前又需要两个网络之间相互直接通讯。这种情况被称之为地址重叠。如下图所示：</p>
+<figure data-type="image" tabindex="12"><img src="https://img-blog.csdn.net/20170913104905601" alt="img" loading="lazy"></figure>
+<p>这时候可能出现多种情况：两个网络中都有双方需要访问的服务器只有一方网络中有双方需要访问的服务器（如上图）</p>
+<p>不同的网络情况，配置时略有不同。概括起来讲，解决这个问题有两种方案：</p>
+<pre><code class="language-yaml">1、 静态转换
+Router(config)#ip nat inside source static network 10.1.1.0 192.168.1.0 /24     (1)
+Router(config)#ip nat outside source static network 10.1.1.0 192.168.2.0 /24    (2)
+Router(config)#ip route 0.0.0.0 0.0.0.0 e1
+Router(config)#int e0
+Router(config-if)#ip add 10.1.1.254 255.255.255.0
+Router(config-if)#ip nat inside
+Router(config)#int e1
+Router(config-if)#ip nat outside
+注解： 
+(1):把内部网络 10.1.1.0 转换成 192.168.1.0，也就是说，对于外部网络而言，内部网络的地址是 192.168.1.0/24
+(2):把外部网络 10.1.1.0 传输来的数据全部修改成 192.168.2.0网段，
+    也就是说，对于内部网络而言，外部真实 10.1.1.0 网络被认为是 192.168.2.0 网络。
+
+
+2、 动态转换
+Router(config)#access-list 1 permit 10.1.1.0 0.0.0.255
+Router(config)#ip nat pool in-pool 192.168.1.1 192.168.1.254 netmask 255.255.255.0
+Router(config)#ip nat poolout-pool 192.168.2.1 192.168.2.254 netmask 255.255.255.0
+Router(config)#ip nat inside list 1 pool in-pool
+Router(config)#ip nat outside list 1 pool out-pool
+Router(config)#ip route 0.0.0.0 0.0.0.0 e1
+Router(config)#int e0
+Router(config-if)#ip add 10.1.1.254 255.255.255.0
+Router(config-if)#ip nat inside
+Router(config)#int e1
+Router(config-if)#ip nat outside
+该配置所得到的效果静态转换一样。在此不再多说。
+</code></pre>
+<h2 id="三-负载分担流量分配">三、 负载分担（流量分配）：</h2>
+<p>随着企业的发展，企业的 WWW 服务器访问的用户越来越多，一台服务器已经不能满足当前的需要，更换一台高端服务器价格不菲，这时候可以使用 NAT 的流量分担功能。来解决企业当前的问题。如图所示：两台 Web服务器承担着相当的 WWW 服务功能。对于外部用户而言，他们只知道该企业的 WWW 地址是 200.1.1.1</p>
+<figure data-type="image" tabindex="13"><img src="https://img-blog.csdn.net/20170913105730523" alt="img" loading="lazy"></figure>
+<p>配置命令和命令解释</p>
+<pre><code class="language-css">基本配置如下：
+Router(config)#ip nat pool wwwserver 10.1.1.1 10.1.1.2 prefix-length 24 type rotary
+Router(config)#access-list 1 permit 200.1.1.1 0.0.0.0
+Router(config)#ip nat inside destination list 1 pool wwwserver
+Router(config)#int e0
+Router(config-if)#ip nat inside
+Router(config)#int e1
+Router(config-if)#ip nat outside
+
+第一条命令是用来建立一个内部服务器的地址池，一定要注意后面的 type rotary，该参数用来分配流量。 
+Access-list 用来指定虚拟服务器地址。
+
+第三条命用来定义转换关系。最后在两个接口上调用 NAT 转换表。
+
+注意，使用这种方法时，并不是最好的解决方案，相同的场景，以后会介绍更好的解决方案。
+</code></pre>
+<h2 id="四-控制-nat-转换表大小">四、 控制 NAT 转换表大小：</h2>
+<p>1、 设置连接最大数量：该命令用来限制动态产生的转换表的条目<br>
+Router(config)#ip nat translation max-entries 最大数目<br>
+2、 设置超时值：动态产生的 NAT 转换条目，根据不同的服务有不同的超时值。<br>
+Router(config)#ip nat translation 协议时间 超时值</p>
+<h1 id="nat-技术三">NAT 技术三</h1>
+<p>在上面 NAT 介绍中，提供了 NAT 的负载均衡的配置。但是，那种简单的负载均衡有较多的局限性：</p>
+<ul>
+<li>1、 不检查内部服务器的状态，可能会造成路由黑洞。</li>
+<li>2、 不能灵活调整服务器的负载</li>
+</ul>
+<p>为了解决这些问题，开始提出新的技术，引入了服务器负载平衡（Server Load Balancing）技术。该技术提供两种工作模式：<strong>定向模式</strong> 和 <strong>分派模式</strong>。</p>
+<h2 id="一-定向模式">一、定向模式：</h2>
+<p>在定向模式中，给服务器指定一个 IP 地址，真实的服务器不知道这个地址。在数据包进行转发的时候，需修改数据包中的 IP 地址，并重新进行 CRC 计算，再进行数据包的转发。</p>
+<figure data-type="image" tabindex="14"><img src="https://img-blog.csdn.net/20170913110346999" alt="img" loading="lazy"></figure>
+<p>具体配置如下：</p>
+<pre><code class="language-less">Router(config)#ip slb serverfarm Web_server (1)
+Router(config-slb-sfarm)#nat server (2)
+Router(config-slb-sfarm)#real 10.1.1.1 (3)
+Router(config-slb-real)#weight 10 (4)
+Router(config-slb-real)#faildetect numconns 8 numclients 3 (5)
+Router(config-slb-real)#retry 60 (6)
+Router(config-slb-real)#maxconns 2000 (7)
+Router(config-slb-real)#inservice (8)
+Router(config-slb-real)#exit
+Router(config-slb-sfarm)#real 10.1.1.2 (9)
+Router(config-slb-real)#weight 15
+Router(config-slb-real)#faildetect numconns 8 numclients 3
+Router(config-slb-real)#retry 60
+Router(config-slb-real)#maxconns 3000
+Router(config-slb-real)#inservice
+Router(config-slb-real)#exit
+Router(config)#ip slb vserver Out_server (10)
+Router(config-slb-vserver)#serverfarm Web_server (11)
+Router(config-slb-vserver)#virtual 200.1.1.1 tcp 80 (12)
+Router(config-slb-vserver)#delay 10 (13)
+Router(config-slb-vserver)#idle 1200 (14)
+Router(config-slb-vserver)#inservice (15)
+
+
+命令详解：
+（1） 建立一个真实服务器群组，群组名 Web_server
+（2） 该群组使用定向模式提供服务。默认情况下真实服务器群组使用分派模式（如下一个图例配置情况就是分派模式。
+（3） 真实服务器的 IP 地址从（4） --（8）是配置真实服务器的一些连接特性
+（4） 权重 10。该命令的意思是： 10.1.1.1 服务器我承担的流量为 10/（10+15）。15 为另一台服务器的权重
+（5） 在认定该服务器失效前，路由器给服务器所发送的最多连接失败数
+（6） 指定在服务器失效后，路由器多长时间检测一次服务器
+（7） 该服务器最大连接数。这个参数设定是根据服务器的性能决定的
+（8） 在这个群组中启用该服务器
+（9） 建立群组中的另一台真实服务器
+（10） 建立虚拟服务器，指定虚拟服务器名 Out_server
+（11） 指定哪个服务器群组处理该虚拟服务器的流量
+（12） 配置虚拟服务器地址及其协议和端口号
+（13） 连接终止后路由器上保持该 SLB 表项的时间
+（14） 空闲超时值
+（15） 启用虚拟服务器
+</code></pre>
+<h2 id="二-分派模式">二、分派模式：</h2>
+<p>处于分派模式时，真实的服务器上配置两个地址：一个是自已的地址，一个是虚拟 IP 地址。当路由器进行数据转发的时候，不需要对数据包的 IP 地址转换，直接把数据包分发。注意，在分派模式的时候，中间的交换机必须是二层交换机。</p>
+<figure data-type="image" tabindex="15"><img src="https://img-blog.csdn.net/20170913110620165" alt="img" loading="lazy"></figure>
+<p>具体配置如下：</p>
+<pre><code class="language-less">Router(config)#ip slb serverfarm Web_server
+Router(config-slb-sfarm)#real 10.1.1.1
+Router(config-slb-real)#weight 10
+Router(config-slb-real)#inservice
+Router(config-slb-real)#exit
+Router(config-slb-sfarm)#real 10.1.1.2
+Router(config-slb-real)#weight 15
+Router(config-slb-real)#inservice
+Router(config-slb-real)#exit
+Router(config)#ip slb vserver Out_server
+Router(config-slb-vserver)#serverfarm Web_server
+Router(config-slb-vserver)#virtual 200.1.1.1 tcp 80
+Router(config-slb-vserver)#inservice
+分派模式的配置和定向模式很多都是相同的。分派模式中只少了一条命令：
+Router(config-slb-sfarm)#nat server
+</code></pre>
+<h1 id="nat-技术四">NAT 技术四</h1>
+<h2 id="一-使用-acl-控制转换">一、使用 ACL 控制转换</h2>
+<p>如下图所示：网络A和网络B都连接到Internet。由于业务需要，两个网络需要相互访问，因而在路由器A和路由器B之间建立了IPsec VPN。当网络A和网络B之间互访时，则不必做NAT转换。</p>
+<figure data-type="image" tabindex="16"><img src="https://img-blog.csdnimg.cn/20200511152149777.jpg" alt="img" loading="lazy"></figure>
+<p>路由器A配置如下：</p>
+<pre><code class="language-css">Router(config)#access-list 100 deny ip 192.168.10.0 0.0.0.255 192.168.20.0 0.0.0.255  (1)
+Router(config)#access-list 100 permit ip 192.168.10.0 0.0.0.255 any
+Router(config)#ip nat inside source list 100 interface e1 overload                    (2)
+Router(config)#int e0
+Router(config-if)#ip add 192.168.10.1 255.255.255.0
+Router(config-if)#ip nat inside
+Router(config)#int e1
+Router(config-if)#ip add 202.1.1.1 255.255.255.252（外部接口地址）
+Router(config-if)#ip nat outside
+
+命令详解：
+（1） 访问控制列表 100 是用来匹配出进行 NAT 转换的数据包，第一个条目中从
+192.168.10.0 到 192.168.20.0 的数据包不需要进行转换，到其它网络的数
+据包需要转换（关于 VPN 内容，以后有机会再说）。
+（2） 符合访问控制列表的流量进行 PAT 转换
+
+如果该单位能申请到较多的 IP 地址，路由器 A 的配置可能如下：
+Router(config)#access-list 100 deny ip 192.168.10.0 0.0.0.255 192.168.20.0 0.0.0.255 (1)
+Router(config)#access-list 100 permit ip 192.168.10.0 0.0.0.255 any
+Router(config)#ip nat pool Real_add 202.1.1.2 202.1.1.200 netmask 255.255.255.0 (2)
+Router(config)#ip nat inside source list 100 pool Real_add (3)
+Router(config)#int e0
+Router(config-if)#ip add 192.168.10.1 255.255.255.0
+Router(config-if)#ip nat inside
+Router(config)#int e1
+Router(config-if)#ip add 202.1.1.1 255.255.255.252（外部接口地址）
+Router(config-if)#ip nat outside
+
+命令详解：
+（1） 匹配需要进行转换的流量
+（2） 配置可以用来转换的地址池
+（3） 进行 NAT 转换配置，符合访问控制列的的流量使用地址池中的地址进行转换。
+      这时候使用访问控制列表来进行 NAT 转换的时候， NAT 转换表中形的条目是这样的：
+Pro Inside global Inside local Outside local Outside global
+--- 202.1.1.1 192.168.10.10 ---- ----
+也就是说，当使用访问控制列表来进行 NAT 转换时，不能形成一个完整的条目。
+这在某些应用中会产生问题，所以需要其它的技术，来形成一个完整的 NAT 转
+换条目
+</code></pre>
+<h2 id="二-使用路由图控制转换">二、使用路由图控制转换</h2>
+<p>如图所示，企业为了优化网络访问，申请了两个ISP的宽带线路。可以提高内部用户访问Inbernet的速度。对于这个企业的需求，对网络的优化方案如下：</p>
+<ol>
+<li>当内部用户所需要的资源在ISP1时，需要从E1端口进行通讯；当内部用户所需要的资源在ISP2时，需要从E0端口通讯。</li>
+<li>不同ISP网络上所来的访问，需要从各自的线路返回。</li>
+</ol>
+<figure data-type="image" tabindex="17"><img src="https://img-blog.csdnimg.cn/20200511152240518.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZyZWVraW5nMTAx,size_16,color_FFFFFF,t_70" alt="img" loading="lazy"></figure>
+<p>在这种拓扑中，如果使用 ACL 来控制 NAT 的转换，就会出现问题，比如说我们作了如下配置：（假设从 ISP1 的网络为 100.1.1.0/24，从 ISP2 的网络地址为 200.1.1.0/24）</p>
+<p>NAT 部分：</p>
+<pre><code class="language-css">Router(config)#ip nat pool isp1 100.1.1.2 100.1.1.254 prefix-length 24
+Router(config)#ip nat pool isp2 200.1.1.2 200.1.1.254 prefix-length 24
+Router(config)#access-list 100 permit ip 10.1.1.0 0.0.0.255 100.1.1.0 0.0.0.255
+Router(config)#access-list 101 permit ip 10.1.1.0 0.0.0.255 200.1.1.0 0.0.0.255
+Router(config)#ip nat inside source list 100 pool isp1
+Router(config)#ip nat inside source list 101 pool isp2
+Router(config)#int e0
+Router(config-if)#ip nat inside
+Router(config)#int e1
+Router(config-if)#ip nat outside
+Router(config)#int e2
+Router(config-if)#ip nat outside
+
+如果内部一台主机 10.1.1.10 对外部进行一次 telnet 访问后， NAT 转换表中形的条目如下：
+Pro Inside global Inside local Outside local Outside global
+tcp 100.1.1.10:57767 10.1.1.1:57767 100.1.1.3:23 1
+00.1.1.3:23
+--- 100.1.1.10 10.1.1.1 --- ---
+如果该主机现在想访问 ISP2 的一个资源， NAT 表中会出现如下情况：
+Pro Inside global Inside local Outside local Outside global
+tcp 100.1.1.10:24597 10.1.1.1:24597 200.1.1.3:23 20 0.1.1.3:23
+tcp 100.1.1.10:26160 10.1.1.1:26160 100.1.1.3:23 10 0.1.1.3:23
+--- 100.1.1.10 10.1.1.1 --- ---
+注意：这时候外出的数据包中的源 IP 地址是 ISP1 的地址。因而返回的数据包
+会从 ISP2 转到 ISP1 网络，再回到企业内部。所以在这种情况下，不能使用 ACL 来进行 NAT 的过滤。
+可使用路由图来形成转换的配置如下：
+Router(config)#ip nat pool isp1 100.1.1.10 100.1.1.100 prefix-length 24
+Router(config)#ip nat pool isp2 200.1.1.10 200.1.1.100 prefix-length 24
+Router(config)#access-list 100 permit ip 10.1.1.0 0.0.0.255 100.1.1.0 0.0.0.255
+Router(config)#access-list 101 permit ip 10.1.1.0 0.0.0.255 200.1.1.0 0.0.0.255
+Router(config)#route-map isp1-map permit 10 (1)
+Router(config-route-map)#match ip address 100 (2)
+Router(config)#route-map isp2-map permit 10 (3)
+Router(config-route-map)#match ip address 101
+Router(config)#ip nat inside source route-map isp1-map pool isp1（4）
+Router(config)#ip nat inside source route-map isp2-map pool isp2
+Router(config)#int e0
+Router(config-if)#ip nat inside
+Router(config)#int e1
+Router(config-if)#ip nat outside
+Router(config)#int e2
+Router(config-if)#ip nat outside
+命令详解：
+（1） 建立 ISP1 的路由图
+（2） 符合访问控制列表的流量适用于路由图
+（3） 建立 ISP2 的路由图
+（4） 调用路由图，建立 NAT 的转换映射
+这种配置时，内部用户访问外部的时候，就形成了完整的 NAT 转换表。才能达到优化网络的目的。
+Pro Inside global Inside local Outside local Outside global
+tcp 100.1.1.10:11787 10.1.1.1:11787 100.1.1.3:23 10 0.1.1.3:23
+tcp 200.1.1.10:14877 10.1.1.1:14877 200.1.1.3:23 20 0.1.1.3:23
+</code></pre>
+<h1 id="nat-技术五">NAT 技术五</h1>
+<p>冗余链路是很多网络所关注的问题， Cisco 公司的 NAT 技术提供在两种情况下的冗余：</p>
+<ul>
+<li>1、 在小型网络中使用的冗余技术，静态 NAT 和 HSRP 协议配合使用</li>
+<li>2、 在大中型网络中使用的冗余技术，有状态的切换。</li>
+</ul>
+<h2 id="一-hsrp-和-静态nat">一、HSRP 和 静态NAT：</h2>
+<p>用来提供网络访问服务的冗余链路。</p>
+<figure data-type="image" tabindex="18"><img src="https://img-blog.csdnimg.cn/20200511152346420.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZyZWVraW5nMTAx,size_16,color_FFFFFF,t_70" alt="img" loading="lazy"></figure>
+<p>配置如下：</p>
+<pre><code class="language-css">路由器A：
+Router(config)#int e0
+Router(config-if)#ip add 10.1.1.10 255.255.255.0
+Router(config-if)#no ip redirects
+Router(config-if)#ip nat inside
+Router(config-if)#standby 1 ip 10.1.1.254
+Router(config-if)#standby 1 priority 120
+Router(config-if)#standby 1 preempt
+Router(config-if)#standby 1 name NAT
+Router(config-if)#standby 1 track e1 50
+Router(config)#int e1
+Router(config-if)#ip add 100.1.1.1 255.255.255.0
+Router(config-if)#ip nat outside
+Router(config)#ip nat inside source static 10.1.1.1 100.1.1.3 reduandancy NAT
+Router(config)#ip nat inside source static 10.1.1.2 100.1.1.4 reduandancy NAT
+路由器B：
+Router(config)#int e0
+Router(config-if)#ip add 10.1.1.11 255.255.255.0
+Router(config-if)#no ip redirects
+Router(config-if)#ip nat inside
+Router(config-if)#standby 1 ip 10.1.1.254
+Router(config-if)#standby 1 preempt
+Router(config-if)#standby 1 name NATGROUP
+Router(config)#int e1
+Router(config-if)#ip add 100.1.1.2 255.255.255.0
+Router(config-if)#ip nat outside
+Router(config)#ip nat inside source static 10.1.1.1 100.1.1.3 reduandancy NATGROUP
+Router(config)#ip nat inside source static 10.1.1.2 100.1.1.4 reduandancy NATGROUP
+命令详解：
+常用于小型网络，只能为静态NAT提供转换
+</code></pre>
+<h2 id="二-有状态的地址切换">二、有状态的地址切换：</h2>
+<p>有状态的地址切换，当流量从一台路由器上通过时，另一台路由器能够获得相同的NAT转换表，故称为有状态的地址切换。</p>
+<p><strong>1. 使用HSRP的有状态切换：</strong></p>
+<figure data-type="image" tabindex="19"><img src="https://img-blog.csdnimg.cn/20200511152424152.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZyZWVraW5nMTAx,size_16,color_FFFFFF,t_70" alt="img" loading="lazy"></figure>
+<p>配置命令：</p>
+<pre><code class="language-css">路由器A：
+Router(config)#int e0
+Router(config-if)#ip add 10.1.1.10 255.255.255.0
+Router(config-if)#no ip redirects
+Router(config-if)#ip nat inside
+Router(config-if)#standby 1 ip 10.1.1.254
+Router(config-if)#standby 1 priority 120
+Router(config-if)#standby 1 preempt
+Router(config-if)#standby 1 name SNAT
+Router(config-if)#standby 1 track e1 50
+Router(config)#int e1
+Router(config-if)#ip add 100.1.1.1 255.255.255.0
+Router(config-if)#ip nat outside
+Router(config)#ip nat stateful id 1
+Router(config-snat)#redundancy SNAT
+Router(config-snat-red)#mapping-id 100
+Router(config)#ip nat pool SNAT-POOL 100.1.1.10 100.1.1.254 prefix-length 24
+Router(config)#ip nat inside source route-map SNAT-MAP pool SNAT-POOL mapping-id 100 overload
+Router(config)#route-map SNAT-MAP permit 10
+Router(config-route-map)#match ip address 100
+Router(config)#access-list 100 permit ip 10.1.1.0 0.0.0.255 any
+ 
+路由器B：
+Router(config)#int e0
+Router(config-if)#ip add 10.1.1.11 255.255.255.0
+Router(config-if)#no ip redirects
+Router(config-if)#ip nat inside
+Router(config-if)#standby 1 ip 10.1.1.254
+Router(config-if)#standby 1 preempt
+Router(config-if)#standby 1 name SNAT
+Router(config)#int e1
+Router(config-if)#ip add 100.1.1.2 255.255.255.0
+Router(config-if)#ip nat outside
+Router(config)#ip nat inside source static 10.1.1.1 100.1.1.3 reduandancy NATGROUP
+Router(config)#ip nat inside source static 10.1.1.2 100.1.1.4 reduandancy NATGROUP
+Router(config)#ip nat stateful id 2
+Router(config-snat)#redundancy SNAT
+Router(config-snat-red)#mapping-id 100
+Router(config)#ip nat pool SNAT-POOL 100.1.1.10 100.1.1.254 prefix-length 24
+Router(config)#ip nat inside source route-map SNAT-MAP pool SNAT-POOL mapping-id 100 overload
+Router(config)#route-map SNAT-MAP permit 10
+Router(config-route-map)#match ip address 100
+Router(config)#access-list 100 permit ip 10.1.1.0 0.0.0.255 any
+命令详解：
+这种有状态的HSRP的SNAT，可以为两种类型的转换：NAT和PAT提供冗余。
+</code></pre>
+<p><strong>2、 不使用 HSRP 的状态切换：</strong></p>
+<figure data-type="image" tabindex="20"><img src="https://img-blog.csdnimg.cn/20200511152523233.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZyZWVraW5nMTAx,size_16,color_FFFFFF,t_70" alt="img" loading="lazy"></figure>
+<p>配置命令：</p>
+<pre><code class="language-css">路由器A：
+Router(config)#int e0
+Router(config-if)#ip add 10.1.1.1 255.255.255.0
+Router(config-if)#ip nat inside
+Router(config)#int e1
+Router(config-if)#ip add 100.1.1.1 255.255.255.0
+Router(config-if)#ip nat outside
+Router(config)#int e2
+Router(config-if)#ip add 192.168.1.254 255.255.255.0
+Router(config)#ip nat stateful id 1
+Router(config-ipnat-snat)#primary 192.168.1.254
+Router(config-ipnat-snat-red)#peer 192.168.1.253
+Router(config-ipnat-snat-red)#mapping-id 100
+Router(config)#ip nat pool SNAT-POOL 100.1.1.10 100.1.1.100 prefix-length 24
+Router(config)#ip nat inside source route-map SNAT-MAP pool SNAT-POOL mapping 100 overload
+Router(config)#route-map SNAT-MAP permit 10
+Router(config-route-map)#match ip addredd 100
+Router(config)#access-list 100 permit ip 10.1.1.0 0.0.0.255 any
+ 
+路由器B：
+Router(config)#int e0
+Router(config-if)#ip add 10.1.1.1 255.255.255.0
+Router(config-if)#ip nat inside
+Router(config)#int e1
+Router(config-if)#ip add 100.1.1.1 255.255.255.0
+Router(config-if)#ip nat outside
+Router(config)#int e2
+Router(config-if)#ip add 192.168.1.254 255.255.255.0
+Router(config)#ip nat stateful id 2
+Router(config-ipnat-snat)#primary 192.168.1.254
+Router(config-ipnat-snat-red)#peer 192.168.1.253
+Router(config-ipnat-snat-red)#mapping-id 100
+Router(config)#ip nat pool SNAT-POOL 100.1.1.10 100.1.1.100 prefix-length 24
+Router(config)#ip nat inside source route-map SNAT-MAP pool SNAT-POOL mapping 100 overload
+Router(config)#route-map SNAT-MAP permit 10
+Router(config-route-map)#match ip addredd 100
+Router(config)#access-list 100 permit ip 10.1.1.0 0.0.0.255 any
+命令详解：
+这种有状态的SNAT，可以为大型网络提供转换
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[记录｜第一天]]></title>
         <id>https://shirleyhz.github.io/ji-lu-ordi-yi-tian/</id>
