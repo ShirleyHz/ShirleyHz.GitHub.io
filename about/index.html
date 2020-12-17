@@ -1,880 +1,58 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0">
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
-
-🏠 关于本站
-👨‍💻 博主是谁
-⛹ 兴趣爱好
-📬 联系我呀
-..." />
-    <meta name="keywords" content="" />
-    <link rel="stylesheet" href="https://shirley-hz-git-hub-io.vercel.app//media/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://shirley-hz-git-hub-io.vercel.app//styles/main.css">
-    
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/default.min.css">
-    
-    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/js/clipboard.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/css/live2d.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
-    <!-- 数学公式 -->
-    
-    <title>快跑猴哥来了</title>
-    
-    <style>
-        .markdownIt-TOC {
-            margin-left: 28%;
-            padding-left: 2px;
-            width: 80%;
-        }
-
-        .markdownIt-TOC li {
-            padding-left: 8%;
-        }
-    </style>
+<!--<!DOCTYPE html>-->
+<html lang="zh-CN">
+	<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimal-ui" />
+    <title>关于 | 来一颗酸酸橙</title>
+    <link rel='stylesheet' id='puma-css'  href='https://shirley-hz-git-hub-io.vercel.app//styles/main.css' type='text/css' media='screen' />
+    <link rel='stylesheet' id='puma-css'  href='https://at.alicdn.com/t/font_1306644_jwtuc2zzbrd.css' media='screen' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script type='text/javascript' src='https://shirley-hz-git-hub-io.vercel.app//media/scripts/jquery.js'></script>
+    <script type='text/javascript' src='https://shirley-hz-git-hub-io.vercel.app//media/scripts/jquery-migrate.min.js'></script>
+    <script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script >hljs.initHighlightingOnLoad();</script>
     
 </head>
+<body class="single single-post postid-3788 single-format-standard">
+	<!--加入跟随滑动的顶部-->
+	<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding">
+			<h1 class="site-title">
+				<a href="https://shirley-hz-git-hub-io.vercel.app/" title="来一颗酸酸橙">BLOG | 来一颗酸酸橙</a>
+			</h1>
+		</div>
 
-<body>
-    <div id="landlord">
-        <div class="message" style="opacity:0"></div>
-        <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
-    </div>
-    <div id="codeCopyText" style="display: none">奥义：ctrl-c！</div>
-    <div id="domainname" style="display:none">https://shirley-hz-git-hub-io.vercel.app/</div>
-    <!-- 响应式布局，针对PC端内容显示 -->
-    <div id="content">
-        <div>
-            <div id="bar">
-                <head>
-  <!-- 引入Bootstrap核心样式文件 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/css/bootstrap.min.css">
-</head>
-<style>
-  @media screen and (max-width:1200px) and (min-width: 768px) {
-    @media (min-width: 768px) {
-      .navbar-nav {
-        float: right;
-        margin: 0;
-      }
-    }
-  }
-  @media screen and (max-width:768px){
-    .mbapspan{
-      padding: 0;
-    }
-  }
-</style>
-
-<body>
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#barmenu"
-          aria-expanded="false" id="barbutton">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="https://shirley-hz-git-hub-io.vercel.app/">快跑猴哥来了&nbsp;&nbsp;|</a>
-        <span class="navbar-brand mbapspan"><i id="mbaplayer" class="fa fa-play-circle-o" aria-hidden="true"
-            style="font-size: 28px;top: 12px;position: absolute;" onclick="aplayerPlay();"></i></span>
-      </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="barmenu">
-        <ul class="nav navbar-nav">
-          
-          
-          <li>
-            <a href="/">
-              首页
-            </a>
-          </li>
-          
-          
-          
-          <li>
-            <a href="/archives">
-              归档
-            </a>
-          </li>
-          
-          
-          
-          <li>
-            <a href="/tags">
-              标签
-            </a>
-          </li>
-          
-          
-          
-          <li><a href="https://shirley-hz-git-hub-io.vercel.app//talk">说说</a></li>
-          
-          
-          <li><a href="https://shirley-hz-git-hub-io.vercel.app//friends">友链</a></li>
-
-          
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-
-
-  <!-- 引入jQuery核心js文件 -->
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-  <script>
-  var btstate = false;
-  var bt = $("#barbutton");
-  var bm = $("#barmenu");
-  bt.click(function(){
-    dropdown();
-  })
-  function dropdown(){
-    console.log(btstate);
-    //下拉
-    if(btstate==false){
-      bt.removeClass("collapsed");
-      bt.attr("aria-expanded","true");
-      bm.attr("aria-expanded","true")
-      bm.fadeIn(700);
-      btstate = true;
-    }
-    else{
-      bt.addClass("collapsed");
-      bt.attr("aria-expanded","false");
-      bm.removeClass("in");
-      bm.hide();
-      bm.attr("aria-expanded","false");
-      btstate = false;
-    }
-  }
-  </script> 
-</body>
-            </div>
-            <div class="row">
-                <div class="side"><body>
-    
-    <div id=side>
-        <div class="avatar-border">
-            <img src="https://shirley-hz-git-hub-io.vercel.app//images/avatar.png?v=1608127592578" class="avatar">
-        </div>
-        <div class="sitename">快跑猴哥来了</div>
-        <span class="describtion" data-text='["永远热爱｜ 我的月亮永悬不落"]'>&nbsp;</span>
-        
-        <div class="search">
-            <!-- <input type="text" class="search-input" placeholder="标题搜索(●'◡'●)" /> -->
-            <input type="text" class="search-input" placeholder="        这里是标题搜索 ⚆_⚆ つ♡">
-            <div class="search-results"></div>
-        </div>
-        
-<!--        <div class="share-button">-->
-<!--            <span>社交按钮</span>-->
-<!--            -->
-<!--                <a href="https://github.com/ShirleyHz" target="_blank"><i style="font-size: 20px;"><img class="icon"-->
-<!--                                                                                                              src="https://shirley-hz-git-hub-io.vercel.app//media/images/github.png" alt=""></i></a>-->
-<!--            -->
-<!--            -->
-<!--                <a onclick="showqq()"><i style="font-size: 20px;"><img class="icon" src="https://shirley-hz-git-hub-io.vercel.app//media/images/QQ.png" alt=""></i></a>-->
-<!--            -->
-<!--            -->
-<!--            -->
-<!--                <a href="https://space.bilibili.com/5367292" target="_blank"><i style="font-size: 20px;"><img class="icon"-->
-<!--                                                                                                                src="https://shirley-hz-git-hub-io.vercel.app//media/images/bilibili.png" alt=""></i></a>-->
-<!--            -->
-<!--            -->
-<!--            -->
-<!--        </div>-->
-<!--        <div id="qq" style="display:none">2497000737</div>-->
-    
-    
-    <div class="mchocie describtion">
-        <a href="/" class="menubutton">
-            首页
-        </a>
-    </div>
-    
-    
-    
-    <div class="mchocie describtion">
-        <a href="/archives" class="menubutton">
-            归档
-        </a>
-    </div>
-    
-    
-    
-    <div class="mchocie describtion">
-        <a href="/tags" class="menubutton">
-            标签
-        </a>
-    </div>
-    
-    
-    
-    <div class="mchocie describtion">
-        <a href="https://shirley-hz-git-hub-io.vercel.app//talk" class="menubutton">说说</a>
-    </div>
-    
-    
-    <div class="mchocie describtion">
-        <a href="https://shirley-hz-git-hub-io.vercel.app//friends" class="menubutton">友人帐</a>
-    </div>
-    
-        <br><br>
-    <hr>
-
-    <div id="footinfo">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | Theme: <a
-        href="https://github.com/850552586/gridea-theme-fog">Fog</a></div>
-    
-    <div class="sitetime"><div id="sitegotimeDate">载入天数...</div>
-    <div id="sitegotimes">载入时分秒...</div></div>
-    <div id="cussitetime" style="display:none">11/20/2020</div>
-    
-    
-    </div>
-
-
-<script src="https://shirley-hz-git-hub-io.vercel.app//media/js/wordshow.js"></script>
-    
-    <script>
-        //----------------------站点运行时间
-        var now = new Date();
-
-        function createtime() {
-            var sitegotime = document.getElementById("cussitetime").innerHTML + " 00:00:00";
-            var grt = new Date(sitegotime); //此处修改你的建站时间或者网站上线时间
-            now.setTime(now.getTime() + 250);
-            days = (now - grt) / 1000 / 60 / 60 / 24;
-            dnum = Math.floor(days);
-            hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
-            hnum = Math.floor(hours);
-            if (String(hnum).length == 1) {
-                hnum = "0" + hnum;
-            }
-            minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
-            mnum = Math.floor(minutes);
-            if (String(mnum).length == 1) {
-                mnum = "0" + mnum;
-            }
-            seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
-            snum = Math.round(seconds);
-            if (String(snum).length == 1) {
-                snum = "0" + snum;
-            }
-            document.getElementById("sitegotimeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
-            document.getElementById("sitegotimes").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
-        }
-        setInterval("createtime()", 250);
-    </script>
-    
-
-
-
-
-    
-</body>
-<script>
-    //-------------------------------------------------搜索
-    // 获取搜索框、搜索按钮、清空搜索、结果输出对应的元素
-    var searchInput = document.querySelector('.search-input');
-    var searchResults = document.querySelector('.search-results');
-
-    // 申明保存文章的标题、链接、内容的数组变量
-    var searchValue = '',
-        arrItems = [],
-        arrLinks = [],
-        arrTitles = [],
-        arrResults = [],
-        indexItem = [],
-        itemLength = 0;
-    var tmpDiv = document.createElement('div');
-    tmpDiv.className = 'result-item';
-
-    // ajax 的兼容写法
-    var xhr = new XMLHttpRequest() || new ActiveXObject('Microsoft.XMLHTTP');
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            xml = xhr.responseXML;
-            arrItems = xml.getElementsByTagName('entry');
-            itemLength = arrItems.length;
-            // 遍历并保存所有文章对应的标题、链接、内容到对应的数组中
-            // 同时过滤掉 HTML 标签
-            for (i = 0; i < itemLength; i++) {
-                var link = arrItems[i].getElementsByTagName('link')[0];
-                arrLinks[i] = link.getAttribute("href");
-                arrTitles[i] = arrItems[i].getElementsByTagName('title')[0].
-                childNodes[0].nodeValue.replace(/<.*?>/g, '');
-            }
-        }
-    }
-
-    // 开始获取根目录下 feed.xml 文件内的数据
-    xhr.open('get', '/atom.xml', true);
-    xhr.send();
-
-
-
-    // 输入框内容变化后就开始匹配，可以不用点按钮
-    // 经测试，onkeydown, onchange 等方法效果不太理想，
-    // 存在输入延迟等问题，最后发现触发 input 事件最理想，
-    // 并且可以处理中文输入法拼写的变化
-    searchInput.oninput = function () {
-        setTimeout(searchConfirm, 0);
-    }
-    searchInput.onfocus = function () {
-        searchResults.style.display = 'block';
-    }
-
-    function searchConfirm() {
-        if (searchInput.value == '') {
-            searchResults.style.display = 'none';
-        } else if (searchInput.value.search(/^\s+$/) >= 0) {
-            // 检测输入值全是空白的情况
-            searchInit();
-            var itemDiv = tmpDiv.cloneNode(true);
-            itemDiv.innerText = '请输入有效内容...';
-            searchResults.appendChild(itemDiv);
-        } else {
-            // 合法输入值的情况
-            searchInit();
-            searchValue = searchInput.value;
-            // 在标题、内容中查找
-            searchMatching(arrTitles, searchValue);
-        }
-    }
-
-    // 每次搜索完成后的初始化
-    function searchInit() {
-        arrResults = [];
-        indexItem = [];
-        searchResults.innerHTML = '';
-        searchResults.style.display = 'block';
-    }
-
-    function searchMatching(arr1, input) {
-        // 忽略输入大小写
-        input = new RegExp(input, 'i');
-        // 在所有文章标题、内容中匹配查询值
-        for (i = 0; i < itemLength; i++) {
-            if (arr1[i].search(input) !== -1) {
-                var arr = arr1;
-                indexItem.push(i); // 保存匹配值的索引
-                var indexContent = arr[i].search(input);
-                // 此时 input 为 RegExp 格式 /input/i，转换为原 input 字符串长度
-                var l = input.toString().length - 3;
-                var step = 10;
-
-                // 将匹配到内容的地方进行黄色标记，并包括周围一定数量的文本
-                arrResults.push(arr[i].slice(indexContent - step, indexContent));
-            }
-        }
-
-        // 输出总共匹配到的数目
-        var totalDiv = tmpDiv.cloneNode(true);
-        totalDiv.innerHTML = '<b>总匹配：' + indexItem.length + ' 项<hr></b>';
-        searchResults.appendChild(totalDiv);
-
-        // 未匹配到内容的情况
-        if (indexItem.length == 0) {
-            var itemDiv = tmpDiv.cloneNode(true);
-            itemDiv.innerText = '未匹配到内容...';
-            searchResults.appendChild(itemDiv);
-        }
-
-        // 将所有匹配内容进行组合
-        for (i = 0; i < arrResults.length; i++) {
-            var itemDiv = tmpDiv.cloneNode(true);
-            itemDiv.innerHTML = '<b>[' + arrTitles[indexItem[i]] +
-                ']</b><p>' + arrResults[i] + "</p><hr />";
-            itemDiv.setAttribute('onclick', 'changeHref(arrLinks[indexItem[' + i + ']])');
-            searchResults.appendChild(itemDiv);
-        }
-    }
-
-    function changeHref(href) {
-        location.href = href;
-    }
-
-    function showqq() {
-        var qq = document.getElementById("qq").innerHTML;
-        if (qq != '')
-            window.location.href = "tencent://message/?uin=" + qq + "&Site=&Menu=yes";
-        else
-            alert("博主暂未设置QQ联系方式");
-    }
-</script>
-</div>
-                
-                <div id="tab1" class="tab">
-                    <div class="bars">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <div class="close"></div>
-                </div>
-                <div class="col-md-1 col-lg-3"></div>
-                <div id="main" class="col-xs-12 col-sm-12 col-md-10 col-lg-7">
-                    <link rel="stylesheet" href="https://shirley-hz-git-hub-io.vercel.app//media/css/font-awesome.css">
-
-<body>
-    <div class="allcontent" id="postdetail">
-        <div class="postshow" style="padding-bottom: 0;">
-            
-<!--            <div class="postinfo-detail">-->
-<!--                <div class="postdate"><i class="fa fa-calendar"></i>2019-01-25</div>-->
-<!--            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 1 min read</div>-->
-<!--            <div class="posttag">-->
-<!--                -->
-<!--            </div>-->
-<!--            </div>-->
-        
-        <div id="articlecontent">
-            <div class="postdetailimg" style="width:100%;overflow: hidden;">
-                
-                    <img src="/media/images/custom-postdefaultimage.jpeg" class="postimage">
-                
-            </div>
-            <div id="texttitle" style="text-align: center">
-                <h2>关于</h2>
-                <!-- id 将作为查询条件 -->
-                <div id="pl" style="display:none">https://shirley-hz-git-hub-io.vercel.app/about/</div>
-                <div id="rootaddr" style="display:none">https://shirley-hz-git-hub-io.vercel.app/</div>
-<!--                <span id="hotnum">-->
-<!--                    <h4><i class="fa fa-eye" aria-hidden="true" style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i-->
-<!--                            class="hotnum">loading...</i></h4>-->
-<!--                </span>-->
-            </div>
-<!--            相关tag信息-->
-            <div class="info">
-                <div>文章作者：ShirleyH
-                    | 发布时间：<i></i>2019-01-25
-                    | 推荐阅读时间：<i></i>1 min</div>
-                <div class="tags">
+		<a class="primary-nav-trigger" href="javascript:void(0)">
+			<span class="menu-icon"></span>
+		</a>
+		
+	</header>
+		<div class="site-navigation-wrapper">
+		<nav id="site-navigation" class="main-navigation" role="navigation">
+			<ul class="primary-nav">
                     
-                </div>
-            </div>
-
-            <div class="text ">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
-
-            </div>
-            <hr style="width: 80%;">
-            
-            
-            <div class="postfooter">
-                <ul class="post-copyright">
-                    <li><strong>文章作者：</strong>ShirleyH</li>
-            <li><strong>原文链接：</strong>https://shirley-hz-git-hub-io.vercel.app/about/</li>
-            <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
-                许可协议。转载请注明出处！</li>
-            </ul>
-        </div>
-        <div id="otherpost">
-            
-            
-        </div>
-    </div>
-    </div>
-    </div>
-
-</body>
-<script>
-    //文章阅读热度
-    // var pl = $("#pl").html();
-    // var rootaddr = $("#rootaddr").html();
-    // pl = pl.replace(rootaddr, "");
-    // $("#hotnum").attr('id', pl);
-</script>
-                <div id="comment"  class="comment" style="background: white">
-                    <div class="commentcontainer">
-                        
-                        <style>
-
-
-    @media screen and (min-width: 1300px) {
-        .veditor::placeholder {
-            color: #b3b3b3;
-            font-size: 14px;
-            text-align: center;
-            line-height: 3rem;
-            font-family: kaiti;
-        }
-    }
-</style>
-
-<body>
-    <div id="vcomments">
-    </div>
-    <script src="https://shirley-hz-git-hub-io.vercel.app//media/js/valine.min.js"></script>
-    <!-- <script src="https://unpkg.com/valine/dist/Valine.min.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-    <script>
-        new Valine({
-            el: '#vcomments',
-            appId: 'cSccyCSxzjSgz2ybthLePFwB-MdYXbMMI',
-            appKey: 'O6eYefleVttxjMFOzOKg4mnC',
-            notify: true,
-            verify: false,
-            avatar: 'retro',
-            pageSize: 10,
-            placeholder: '所有的不期而遇都在路上',
-            visitor: true, // 阅读量统计
-            emojiCDN: '//i0.hdslb.com/bfs/emote/',
-            emojiMaps:{
-                "tv-白眼":"https://i0.hdslb.com/bfs/emote/c1d59f439e379ee50eef488bcb5e5378e5044ea4.png",
-                "tv-doge":"https://i0.hdslb.com/bfs/emote/6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
-                "tv-坏笑":"https://i0.hdslb.com/bfs/emote/1f0b87f731a671079842116e0991c91c2c88645a.png",
-                "tv-难过":"https://i0.hdslb.com/bfs/emote/87f46748d3f142ebc6586ff58860d0e2fc8263ba.png",
-                "tv-生气":"https://i0.hdslb.com/bfs/emote/26702dcafdab5e8225b43ffd23c94ac1ff932654.png",
-                "tv-委屈":"https://i0.hdslb.com/bfs/emote/d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
-                "tv-斜眼笑":"https://i0.hdslb.com/bfs/emote/911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png",
-                "tv-呆":"https://i0.hdslb.com/bfs/emote/fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
-                "tv-发怒":"https://i0.hdslb.com/bfs/emote/34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
-                "tv-惊吓":"https://i0.hdslb.com/bfs/emote/0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
-                "tv-呕吐":"https://i0.hdslb.com/bfs/emote/9f996894a39e282ccf5e66856af49483f81870f3.png",
-                "tv-思考":"https://i0.hdslb.com/bfs/emote/90cf159733e558137ed20aa04d09964436f618a1.png",
-                "tv-微笑":"https://i0.hdslb.com/bfs/emote/70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
-                "tv-疑问":"https://i0.hdslb.com/bfs/emote/0793d949b18d7be716078349c202c15ff166f314.png",
-                "tv-大哭":"https://i0.hdslb.com/bfs/emote/23269aeb35f99daee28dda129676f6e9ea87934f.png",
-                "tv-鼓掌":"https://i0.hdslb.com/bfs/emote/1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png",
-                "tv-抠鼻":"https://i0.hdslb.com/bfs/emote/c666f55e88d471e51bbd9fab9bb308110824a6eb.png",
-                "tv-亲亲":"https://i0.hdslb.com/bfs/emote/a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
-                "tv-调皮":"https://i0.hdslb.com/bfs/emote/b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png",
-                "tv-笑哭":"https://i0.hdslb.com/bfs/emote/1abc628f6d4f4caf9d0e7800878f4697abbc8273.png",
-                "tv-晕":"https://i0.hdslb.com/bfs/emote/5443c22b4d07fb1907ccc610c8e6db254f2461b7.png",
-                "tv-点赞":"https://i0.hdslb.com/bfs/emote/f85c354995bd99e28fc76c869bfe42ba6438eff4.png",
-                "tv-害羞":"https://i0.hdslb.com/bfs/emote/a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
-                "tv-睡着":"https://i0.hdslb.com/bfs/emote/8b196675b53af58264f383c50ad0945048290b33.png",
-                "tv-色":"https://i0.hdslb.com/bfs/emote/61822c7e9aae5da76475e7892534545336b23a6f.png",
-                "tv-吐血":"https://i0.hdslb.com/bfs/emote/09dd16a7aa59b77baa1155d47484409624470c77.png",
-                "tv-无奈":"https://i0.hdslb.com/bfs/emote/ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png",
-                "tv-再见":"https://i0.hdslb.com/bfs/emote/180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
-                "tv-流汗":"https://i0.hdslb.com/bfs/emote/cead1c351ab8d79e9f369605beb90148db0fbed3.png",
-                "tv-偷笑":"https://i0.hdslb.com/bfs/emote/bb690d4107620f1c15cff29509db529a73aee261.png",
-                "tv-抓狂":"https://i0.hdslb.com/bfs/emote/fe31c08edad661d63762b04e17b8d5ae3c71a757.png",
-                "tv-黑人问号":"https://i0.hdslb.com/bfs/emote/45821a01f51bc867da9edbaa2e070410819a95b2.png",
-                "tv-困":"https://i0.hdslb.com/bfs/emote/241ee304e44c0af029adceb294399391e4737ef2.png",
-                "tv-打脸":"https://i0.hdslb.com/bfs/emote/56ab10b624063e966bfcb76ea5dc4794d87dfd47.png",
-                "tv-闭嘴":"https://i0.hdslb.com/bfs/emote/c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png",
-                "tv-鄙视":"https://i0.hdslb.com/bfs/emote/6e72339f346a692a495b123174b49e4e8e781303.png",
-                "tv-腼腆":"https://i0.hdslb.com/bfs/emote/89712c0d4af73e67f89e35cbc518420380a7f6f4.png",
-                "tv-馋":"https://i0.hdslb.com/bfs/emote/fc7e829b845c43c623c8b490ee3602b7f0e76a31.png",
-                "tv-可爱":"https://i0.hdslb.com/bfs/emote/9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
-                "tv-发财":"https://i0.hdslb.com/bfs/emote/34db290afd2963723c6eb3c4560667db7253a21a.png",
-                "tv-生病":"https://i0.hdslb.com/bfs/emote/8b0ec90e6b86771092a498c54f09fc94621c1900.png",
-                "tv-流鼻血":"https://i0.hdslb.com/bfs/emote/c32d39db2737f89b904ca32700d140a9241b0767.png",
-                "tv-尴尬":"https://i0.hdslb.com/bfs/emote/7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
-                "tv-大佬":"https://i0.hdslb.com/bfs/emote/093c1e2c490161aca397afc45573c877cdead616.png",
-                "tv-流泪":"https://i0.hdslb.com/bfs/emote/7e71cde7858f0cd50d74b0264aa26db612a8a167.png",
-                "tv-冷漠":"https://i0.hdslb.com/bfs/emote/b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
-                "tv-皱眉":"https://i0.hdslb.com/bfs/emote/72ccad6679fea0d14cce648b4d818e09b8ffea2d.png",
-                "tv-鬼脸":"https://i0.hdslb.com/bfs/emote/0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png",
-                "tv-调侃":"https://i0.hdslb.com/bfs/emote/4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png",
-                "tv-目瞪口呆":"https://i0.hdslb.com/bfs/emote/0b8cb81a68de5d5365212c99375e7ace3e7891b7.png",
-                "2233娘-大笑":"https://i0.hdslb.com/bfs/emote/16b8794be990cefa6caeba4d901b934a227ee3b8.png",
-                "2233娘-吃惊":"https://i0.hdslb.com/bfs/emote/d1628c43d35b1530c0504a643ff80b6189fa0a43.png",
-                "2233娘-大哭":"https://i0.hdslb.com/bfs/emote/476a2a60f6e337b8c0697a592e0aa82781f6b33b.png",
-                "2233娘-耶":"https://i0.hdslb.com/bfs/emote/d7178e258a0efc969b65ccc2b1322fb235f5dff4.png",
-                "2233娘-卖萌":"https://i0.hdslb.com/bfs/emote/ea893aa25355de95ab4f03c2dad3f0c58d0c159e.png",
-                "2233娘-疑问":"https://i0.hdslb.com/bfs/emote/0b41f509351958dbb63d472fec0132d1bd03bd14.png",
-                "2233娘-汗":"https://i0.hdslb.com/bfs/emote/247cd9df8cdf84b18368c21e3b2dd374e84c0927.png",
-                "2233娘-困惑":"https://i0.hdslb.com/bfs/emote/714eeb4eae0d0933b4ff08b7df788b1982f6b940.png",
-                "2233娘-怒":"https://i0.hdslb.com/bfs/emote/f31953119c51b9748016440ac0b632f779929b37.png",
-                "2233娘-委屈":"https://i0.hdslb.com/bfs/emote/d9d0bf9d358af8d5761093ec66d4e3f60d963a63.png",
-                "2233娘-郁闷":"https://i0.hdslb.com/bfs/emote/485203fe7100f2c8fc40b2800a18fe20b35f2f1a.png",
-                "2233娘-第一":"https://i0.hdslb.com/bfs/emote/3754ee6e5985bd0bd7dfb668981f2a8733398ebd.png",
-                "2233娘-喝水":"https://i0.hdslb.com/bfs/emote/695bf5429472049b52c1e0de586f8a2511195a23.png",
-                "2233娘-吐魂":"https://i0.hdslb.com/bfs/emote/e999af499edf38a91ca68b1a9d2f97042c1d6734.png",
-                "2233娘-无言":"https://i0.hdslb.com/bfs/emote/fdb5870f32cfaf7949e0f88a13f6feba4a48b719.png",
-                "蛆音娘-卖萌":"https://i0.hdslb.com/bfs/emote/4cd1024d0c2ecee93224477946656d32c1705ccf.png",
-                "蛆音娘-吃瓜群众":"https://i0.hdslb.com/bfs/emote/5d0d6cc54b508d30b4f50b6b5f7b7e1e259d84ea.png",
-                "蛆音娘-吃惊":"https://i0.hdslb.com/bfs/emote/7a4cb0b644214d476ce198ddf6a7a0aa31311199.png",
-                "蛆音娘-害怕":"https://i0.hdslb.com/bfs/emote/7407634bf67bfe9d7806f15d57608a1b18c2b4c2.png",
-                "蛆音娘-扶额":"https://i0.hdslb.com/bfs/emote/a4d8f95baaa24821fd591a7dbeee1b869e760f59.png",
-                "蛆音娘-滑稽":"https://i0.hdslb.com/bfs/emote/d3717f10ffe9787336bc39a09214270988521a67.png",
-                "蛆音娘-哼":"https://i0.hdslb.com/bfs/emote/8854f1b8a82126e3b87f3a1563da5feb55b23e71.png",
-                "蛆音娘-机智":"https://i0.hdslb.com/bfs/emote/e543c0a823ca915df9362283f4ae950e9e9cc2e9.png",
-                "蛆音娘-哭泣":"https://i0.hdslb.com/bfs/emote/a23055546c19eba663b16370b8e072394d87ff53.png",
-                "蛆音娘-睡觉觉":"https://i0.hdslb.com/bfs/emote/40ef7e6d931acb37e5514b70d13663e86dc3698b.png",
-                "蛆音娘-生气":"https://i0.hdslb.com/bfs/emote/bf398cbbcfaae107d1b59aaf03895f38422e3d87.png",
-                "蛆音娘-偷看":"https://i0.hdslb.com/bfs/emote/52463ded4f23649db10ba3ced662ed946c5edf0b.png",
-                "蛆音娘-吐血":"https://i0.hdslb.com/bfs/emote/5772d22015e5b2b40a9fe302b5967ec7282ac848.png",
-                "蛆音娘-无语":"https://i0.hdslb.com/bfs/emote/b6c763c6484ce2e48299ceb21861e46318868871.png",
-                "蛆音娘-摇头":"https://i0.hdslb.com/bfs/emote/b7278f750c6f2235f41f37056d727f25d3bf781f.png",
-                "蛆音娘-疑问":"https://i0.hdslb.com/bfs/emote/7750b698d15a1b8e83c0f59106e8e9cd5cb57897.png",
-                "蛆音娘-die":"https://i0.hdslb.com/bfs/emote/52543025a070fde5c01a10320c9636ec3173ac99.png",
-                "蛆音娘-OK":"https://i0.hdslb.com/bfs/emote/52a0dcee66c91bf123bf53bd48a269b1317d17f9.png",
-                "蛆音娘-肥皂":"https://i0.hdslb.com/bfs/emote/7f1a857e9430dcf3050ce0ef5fa19aefebea6dc4.png",
-                "蛆音娘-大笑":"https://i0.hdslb.com/bfs/emote/1d3355fb89c24ab3c50e5c152d8b990a290dc63e.png",
-                "一人之下-机智":"https://i0.hdslb.com/bfs/emote/afdcd367d011fbe5b78032daf519689c0bbcdc5e.png",
-                "一人之下-刀":"https://i0.hdslb.com/bfs/emote/68036be8868b42a6cbdb61327cfdb50bedde1a38.png",
-                "一人之下-埋了":"https://i0.hdslb.com/bfs/emote/2784a335e41ac4cdf2ec94bf430a906f933f11f4.png",
-                "一人之下-蟑螂":"https://i0.hdslb.com/bfs/emote/a95014fff53b7921b5f1850781ccf5af5ef73234.png",
-                "一人之下-抽打":"https://i0.hdslb.com/bfs/emote/a6a0a0a20019de939232bdaf3f1882e6d8ffd75e.png",
-                "一人之下-燃":"https://i0.hdslb.com/bfs/emote/f2a78e0e05bb90b38b550f57355173f8e9e32a7f.png",
-                "一人之下-超凶":"https://i0.hdslb.com/bfs/emote/aea3aa73a14350613628a0dac83e77c6c8fa9d68.png",
-                "一人之下-干翻苍穹":"https://i0.hdslb.com/bfs/emote/e5de003a4eb9fef32fe722cd06ad2abc9a3d4ec3.png",
-                "一人之下-糟了":"https://i0.hdslb.com/bfs/emote/45ad7c1b87cf95743a2ad000b8dd2eedfcf73107.png",
-                "一人之下-孙贼":"https://i0.hdslb.com/bfs/emote/a689c37d5779cda0774d6f4be65cd587c4d0e27f.png",
-                "一人之下-养生":"https://i0.hdslb.com/bfs/emote/32adfeb34ecc2e4ab9702813ab547fc0bb09aac7.png",
-                "一人之下-瘫":"https://i0.hdslb.com/bfs/emote/721c2b271d9edbb937c6dec61ba25568797b27aa.png",
-                "一人之下-打call":"https://i0.hdslb.com/bfs/emote/7f979ab31d61e09acb3da46b52c52376e1131abe.png",
-                "一人之下-比心":"https://i0.hdslb.com/bfs/emote/fafec3459f631f0ba76adde9faf8aa112469e9c4.png",
-                "一人之下-摸头":"https://i0.hdslb.com/bfs/emote/500171557765a27c500a7024888c698680c73653.png",
-                "一人之下-八卦":"https://i0.hdslb.com/bfs/emote/5be05cddd588d7b635cd55501b9b7a47af5dc5bc.png",
-                "一人之下-狐狸":"https://i0.hdslb.com/bfs/emote/022b95f086cd4469aec2a44045729bfda6fd8c95.png",
-                "一人之下-承让":"https://i0.hdslb.com/bfs/emote/6a21366ea70b7369b1d3c867f04bf8932e7c9be4.png",
-                "一人之下-哎？":"https://i0.hdslb.com/bfs/emote/ece804d0f852c6c6c9ae280dca523de672d5631d.png",
-                "一人之下-叹气":"https://i0.hdslb.com/bfs/emote/f5c79a00613d3e1f71d18332d474c7c0af31e4b2.png",
-                "一人之下-雷":"https://i0.hdslb.com/bfs/emote/75bbf0f391e8136d79109ff1d6904b688555b49b.png",
-                "Cat-escort":"https://i0.hdslb.com/bfs/emote/81784f53f5ca7004a90d316c81889d8161dc05a6.png",
-                "Cat-coffeebath":"https://i0.hdslb.com/bfs/emote/f80cfd44e0f216f4171a549e869aab32d80d4c39.png",
-                "Cat-stealth":"https://i0.hdslb.com/bfs/emote/21f7d24b1e8de29f2c61f64e70af9f6aec14e394.png",
-                "Cat-hightouch":"https://i0.hdslb.com/bfs/emote/3d7264b8349bc1be6d45beebbcfab69e7b9895fc.png",
-                "Cat-lonely":"https://i0.hdslb.com/bfs/emote/72a9d2f20fb79883bbed3cac914187545ac3a0cc.png",
-                "Cat-heart":"https://i0.hdslb.com/bfs/emote/3f98c4debfe792a1969b99ae71f7f5d4bf00c3d5.png",
-                "Cat-slip":"https://i0.hdslb.com/bfs/emote/a6e45e065ed17e2af03f7263784bc36d94b25e74.png",
-                "Cat-chips":"https://i0.hdslb.com/bfs/emote/12d2d3ce0e72749c45706444cca580dc22148876.png",
-                "Cat-study":"https://i0.hdslb.com/bfs/emote/9f6d28ecd7e33c3f5e7cd74cc36f4feedb42e995.png",
-                "Cat-dash":"https://i0.hdslb.com/bfs/emote/0f2d1f99efd5df816c694da76e91a173fa643589.png",
-                "Cat-pressure":"https://i0.hdslb.com/bfs/emote/c6c270e9989e7152457b907595a6e34064d0c1b2.png",
-                "Cat-hibye":"https://i0.hdslb.com/bfs/emote/9e4955f479a1211d401fbaa71ceaf5186b9e57bd.png",
-                "Cat-confuse":"https://i0.hdslb.com/bfs/emote/107ebcbd4dd5895f4595ea6db963dc4566809c6e.png",
-                "Cat-ignore":"https://i0.hdslb.com/bfs/emote/94de4f63a5f965ee8312a88e4c57c07c0174acce.png",
-                "Cat-agree":"https://i0.hdslb.com/bfs/emote/48b00f75518a727d64c385fe8ca2fa49aeb08c77.png",
-                "Cat-fight":"https://i0.hdslb.com/bfs/emote/e39c491906d0fcd0176eede702305655d44044c5.png",
-                "Cat-splash":"https://i0.hdslb.com/bfs/emote/9513157fed2425ed2caa4eb9bc84a0bca80df9bc.png",
-                "Cat-calledme":"https://i0.hdslb.com/bfs/emote/aacb6fb852f6acbbc8386ecef76c98b77178e23e.png",
-                "Cat-sleep":"https://i0.hdslb.com/bfs/emote/39b964d10bde1634f136b662f5b624fcb3bcedb8.png",
-                "Cat-congrats":"https://i0.hdslb.com/bfs/emote/98f6e73340d9ed43403242fc842e42508d38bba6.png",
-                "黄绿合战-带劲":"https://i0.hdslb.com/bfs/emote/fe17a03ae1aeccba2ce018f20f2cb56b33277687.png",
-                "黄绿合战-死亡歌姬":"https://i0.hdslb.com/bfs/emote/546e7410afb32c03d4c0207da35a3facc26751e6.png",
-                "黄绿合战-哈哈哈":"https://i0.hdslb.com/bfs/emote/e4cf417524002678a7820b2db64716ffc09e3554.png",
-                "黄绿合战-打你哦":"https://i0.hdslb.com/bfs/emote/6015705190ce82862e501bec99e2a793c03fb050.png",
-                "黄绿合战-真香":"https://i0.hdslb.com/bfs/emote/e4b070c29d34c0b33f819fda59123e14041562c2.png",
-                "黄绿合战-蓝蓝路":"https://i0.hdslb.com/bfs/emote/ce7cc43abcc461eb66bbf0528d64f64069a0e95b.png",
-                "黄绿合战-吹爆":"https://i0.hdslb.com/bfs/emote/4c33b0a003b74fa25a19d54477db0fcdbc02a621.png",
-                "黄绿合战-愤怒":"https://i0.hdslb.com/bfs/emote/0fe37135491b20f6af4d3bead344e5e77dfa6923.png",
-                "黄绿合战-威胁":"https://i0.hdslb.com/bfs/emote/f81a006dd53cc84e9c65d7784aa6ca061c3e4fc2.png",
-                "黄绿合战-金坷垃":"https://i0.hdslb.com/bfs/emote/a81f44bcaa96b79b5122fc80fa214d47c68d94c6.png",
-                "泠鸢yousa-awsl":"https://i0.hdslb.com/bfs/emote/7663b729161bd4556c2ec318c07791000743eb56.png",
-                "泠鸢yousa-打call":"https://i0.hdslb.com/bfs/emote/718e9495846db4172eb87d2f7f02015a34d35ea2.png",
-                "泠鸢yousa-沉默":"https://i0.hdslb.com/bfs/emote/5e967cf1669743ed92e9a8ff3e5de6d90ca63d3d.png",
-                "泠鸢yousa-大哭":"https://i0.hdslb.com/bfs/emote/3f757b147b9b1e201470eae7dac9cc0360172569.png",
-                "泠鸢yousa-干杯":"https://i0.hdslb.com/bfs/emote/5cf5e14101be845233a222ab1bbdc21c63af04c3.png",
-                "泠鸢yousa-好人卡":"https://i0.hdslb.com/bfs/emote/e3907b3bb20b18e7ecb11cd86829c9a4ce5b1b2f.png",
-                "泠鸢yousa-加大力度":"https://i0.hdslb.com/bfs/emote/a0393a2d4b522f07a319dfd2e91754a3cdff2c48.png",
-                "泠鸢yousa-滑稽":"https://i0.hdslb.com/bfs/emote/a8057c0e0579b93c16010a270e261fd0a64034af.png",
-                "泠鸢yousa-请吃桃":"https://i0.hdslb.com/bfs/emote/e92276d9d8c28f85f7dbcc0fbbb6ecb3345ce33e.png",
-                "泠鸢yousa-惊讶":"https://i0.hdslb.com/bfs/emote/9fdc2c5b4b970aded56fe2f326bd4d00e849339d.png",
-                "泠鸢yousa-生气":"https://i0.hdslb.com/bfs/emote/9e6ba9ff34101e04d3e321cad486f845f892050e.png",
-                "泠鸢yousa-贴贴":"https://i0.hdslb.com/bfs/emote/dbc177d314231add509501ffc6bc7655fca2c10f.png",
-                "泠鸢yousa-头晕":"https://i0.hdslb.com/bfs/emote/49830c1c8a1652f7ee9cb854ac7dbf8e378cdcd6.png",
-                "泠鸢yousa-问号":"https://i0.hdslb.com/bfs/emote/ab7a543233eff83138c3221c86a762ab36bab7bc.png",
-                "泠鸢yousa-真棒":"https://i0.hdslb.com/bfs/emote/02ea49543a3ac52feee185c156ab08fb2bfdd89e.png",
-                "墨清弦2nd-抱抱":"https://i0.hdslb.com/bfs/emote/f215e60e88a8438ff5dddca3bc92abd22d8d150a.png",
-                "墨清弦2nd-点赞":"https://i0.hdslb.com/bfs/emote/4e2638870787e0dd517f90db0b3a6e330f8a938a.png",
-                "墨清弦2nd-加载中":"https://i0.hdslb.com/bfs/emote/6e4d53dab5eb1093699023c7c65b11853d84efa6.png",
-                "墨清弦2nd-惊讶":"https://i0.hdslb.com/bfs/emote/d6d1a3d87105da8e7dab81c19d7ee7c87e4b841a.png",
-                "墨清弦2nd-撒花":"https://i0.hdslb.com/bfs/emote/c48eb34795a62462010a5fceab4b0c5e98c4568c.png",
-                "墨清弦2nd-生气":"https://i0.hdslb.com/bfs/emote/4ae1fab6730f31f02de78729e6c598d46a150937.png",
-                "墨清弦2nd-无语":"https://i0.hdslb.com/bfs/emote/418411091500eeee0b3739dac811046376523a1f.png",
-                "墨清弦2nd-吸猫":"https://i0.hdslb.com/bfs/emote/54d08d99ec7afe5068c459a918744226d203937b.png",
-                "墨清弦2nd-小心心":"https://i0.hdslb.com/bfs/emote/0dcc75854514878c77196a9a37e876c30b0096d3.png",
-                "墨清弦2nd-蹲墙角":"https://i0.hdslb.com/bfs/emote/57e71776e1b24675302c331f1bf6a3e6e2ab095e.png",
-                "洛天依-goodjob":"https://i0.hdslb.com/bfs/emote/a781b75de326488ba00c937f0d89b4eaba6a0ca0.png",
-                "洛天依-啊这":"https://i0.hdslb.com/bfs/emote/dadc58388430910b08339280054f3a776e6a9968.png",
-                "洛天依-爱你":"https://i0.hdslb.com/bfs/emote/f73b23dfef03618e1085507f248f70342c62b203.png",
-                "洛天依-嘲笑":"https://i0.hdslb.com/bfs/emote/0e5fef3f683b7989b036f587a143443a21fc27e2.png",
-                "洛天依-吃瓜":"https://i0.hdslb.com/bfs/emote/9935546bf88cede6dd8a7c7e31af192ece3d48a8.png",
-                "洛天依-害羞":"https://i0.hdslb.com/bfs/emote/6f252dc101140281ee67d39b089107086d51557b.png",
-                "洛天依-捏捏":"https://i0.hdslb.com/bfs/emote/ae4e9a000dcbc9c95f72157886d5b06d907d75c6.png",
-                "洛天依-恰柠檬":"https://i0.hdslb.com/bfs/emote/0fd022ad0d3aab8c1838a154aead476155a1e32c.png",
-                "洛天依-耶":"https://i0.hdslb.com/bfs/emote/2c149fb2c7f5ed2132301b8dbf9ce91b706b65c8.png",
-                "洛天依-震惊":"https://i0.hdslb.com/bfs/emote/ba0fecf913a690a9b36b01a09b8140396b995c96.png",
-                "言和7th-不好意思":"https://i0.hdslb.com/bfs/emote/770cab6905d3563ea98ce41300ab6faa4d72e0bc.png",
-                "言和7th-乖巧":"https://i0.hdslb.com/bfs/emote/2cc3e5bd1b74e11d63227626e3e70ccca218b9e8.png",
-                "言和7th-来晚了":"https://i0.hdslb.com/bfs/emote/e4bf7d9341cf16e531e59fb3ae00b5099bd74903.png",
-                "言和7th-静静看你":"https://i0.hdslb.com/bfs/emote/a073eb677ae33a72b99a0e08fad8d0d597f69d2b.png",
-                "言和7th-一键三连":"https://i0.hdslb.com/bfs/emote/033d7dbfd814d9e7baa69a63137157f4b9032b5f.png",
-                "言和7th-捶你胸口":"https://i0.hdslb.com/bfs/emote/ad5ce66b4480044c31bbc23598f4209e6be2275d.png",
-                "言和7th-期待":"https://i0.hdslb.com/bfs/emote/4d520d8bd5cd2924548a67a96afb898440789fc1.png",
-                "言和7th-小fafa":"https://i0.hdslb.com/bfs/emote/efcc742e4c202f631162d6fdfb6e3cbb52a0871b.png",
-                "言和7th-不行":"https://i0.hdslb.com/bfs/emote/76ae33697d1942cfbb825acdfdd3de8826dbf10e.png",
-                "言和7th-梦里都有":"https://i0.hdslb.com/bfs/emote/c8c714cbaf4022b71c8b8d0e0e374f08865011cf.png",
-                "BML云live-打call":"https://i0.hdslb.com/bfs/emote/04b4fb889ad1c462eafda2828cae80fe532f14eb.png",
-                "BML云live-22唱歌":"https://i0.hdslb.com/bfs/emote/5497e226a20b2781daf3eb8955d25525b4986f97.png",
-                "BML云live-33唱歌":"https://i0.hdslb.com/bfs/emote/adb2520d5a3395be7bece8b2a672f9af244e3ae5.png",
-                "BML云live-治疗":"https://i0.hdslb.com/bfs/emote/c1d646852f59017a5bddf161255cc4003aac5843.png",
-                "BML云live-awsl":"https://i0.hdslb.com/bfs/emote/ca3d2ce904f078d4c761b44febe7e21d676e696a.png",
-                "BML云live-点赞":"https://i0.hdslb.com/bfs/emote/e97dcaaf092475e0436403e7d74e2a8ca08e1c7f.png",
-                "BML云live-黑化22":"https://i0.hdslb.com/bfs/emote/b657b734c6f23f5d7a8eae5568acea1a1d13a116.png",
-                "BML云live-黑化33":"https://i0.hdslb.com/bfs/emote/506b5ee6730f1c7edd269b832af668ba0eab7e05.png",
-                "BML云live-上buff":"https://i0.hdslb.com/bfs/emote/c5c94faba4bc3857b2f30883e5bff256fa8215f0.png",
-                "BML云live-想桃子":"https://i0.hdslb.com/bfs/emote/1f5c3a1ada53185128b69c2e60bb5bed764ae970.png",
-                "中国绊爱-吃惊":"https://i0.hdslb.com/bfs/emote/c590a359bb2c9ec43f695dbe6a40ab03dddc0fcd.png",
-                "中国绊爱-大叫":"https://i0.hdslb.com/bfs/emote/3a3ead4ce90b4628213445e873a9aadbb21ef055.png",
-                "中国绊爱-点赞":"https://i0.hdslb.com/bfs/emote/9248de5d87737a34f88204156ad0401814cda8e0.png",
-                "中国绊爱-吃饺子":"https://i0.hdslb.com/bfs/emote/17f5d04e7891795e1320d27e74f7d85aeb2c42d5.png",
-                "中国绊爱-贴贴":"https://i0.hdslb.com/bfs/emote/7525b277cdcbabfe5e5b102fae8260480aaf7682.png",
-                "中国绊爱-无语":"https://i0.hdslb.com/bfs/emote/fc9a4bcff2c5f15d9d9926e4e54e701ebf63f46b.png",
-                "中国绊爱-笑哭":"https://i0.hdslb.com/bfs/emote/913bcdd8bf756d521dc5c4b89056c09358a1b349.png",
-                "中国绊爱-星星眼":"https://i0.hdslb.com/bfs/emote/93954c6b475ffb1e2886aee8f27825b406df2dd7.png",
-                "中国绊爱-一手好牌":"https://i0.hdslb.com/bfs/emote/ab3e15c12856fe33da12b88cc7e4f4bcf9c01025.png",
-                "中国绊爱-疑惑":"https://i0.hdslb.com/bfs/emote/e85f0568167fe5ecbc1c11911503ac9cd6f98339.png",
-                "阿库娅-才女才女":"https://i0.hdslb.com/bfs/emote/17a7afaabf31847bfe9b6a876f9abbab5c772197.png",
-                "阿库娅-害羞":"https://i0.hdslb.com/bfs/emote/8953fa1c257c48c9ad62363cd6e2de103d77fa85.png",
-                "阿库娅-不关我事":"https://i0.hdslb.com/bfs/emote/2d4dbec9642e9a76859a33eef49705aa0957ba85.png",
-                "阿库娅-惊讶":"https://i0.hdslb.com/bfs/emote/01c6134e28b3de73b7af38dad8f6176523604830.png",
-                "阿库娅-余裕余裕":"https://i0.hdslb.com/bfs/emote/dd86f209f72c687c72a8485a1f533c01b61ca1b7.png",
-                "阿库娅-哭了":"https://i0.hdslb.com/bfs/emote/9fe8cc425e8e46ab9d2fc2868a4dcb1c1f8bd62e.png",
-                "阿库娅-理解理解":"https://i0.hdslb.com/bfs/emote/7a93d37df6cbeb7c340400ad6aa761c2769a3477.png",
-                "阿库娅-生气":"https://i0.hdslb.com/bfs/emote/d6d5abe555c97ceaa0e7d822fa6c55e4dfcd7057.png",
-                "阿库娅-无语":"https://i0.hdslb.com/bfs/emote/b686e3064484ec1d38747d7f9dc9a5e2a6275fde.png",
-                "阿库娅-Rua！":"https://i0.hdslb.com/bfs/emote/cbcda2a1c728f578d8b941e742fe65345c529fee.png",
-                "阿库娅-nice":"https://i0.hdslb.com/bfs/emote/78dfe9ee6058ac7cf43af82665b5d6f6fc265dcf.png",
-                "阿库娅-喜欢":"https://i0.hdslb.com/bfs/emote/f97b2d05b7cd127b58ed93ebf92fdfc80d6d9366.png",
-                "阿库娅-对不起":"https://i0.hdslb.com/bfs/emote/046207b5eba4c71ecd98ac369b6d299b5f9f1ea1.png",
-                "阿库娅-嫌弃":"https://i0.hdslb.com/bfs/emote/e73c8366b6a7121f8eeeecbe2db9407d03ccd325.png",
-                "阿库娅-洋葱问号":"https://i0.hdslb.com/bfs/emote/cd8ece00df1c19075077187bfb3aeb259678a5c5.png",
-                "神楽Mea-拜托拜托":"https://i0.hdslb.com/bfs/emote/2acfdf866cb9d5bc6efa4dcfbe1baebd0bbb3550.png",
-                "神楽Mea-不可以":"https://i0.hdslb.com/bfs/emote/21b61235610e77bd43e9b7dcd382cfc2cbc7feb9.png",
-                "神楽Mea-给我钱":"https://i0.hdslb.com/bfs/emote/974c4f3235570125e72eda6c664300d882945000.png",
-                "神楽Mea-哈哈哈":"https://i0.hdslb.com/bfs/emote/d4e82312c2b7ae24db07dc0748e82ed3f6a88d1b.png",
-                "神楽Mea-哭给你看":"https://i0.hdslb.com/bfs/emote/d167505d1c2ce0b39ec8c8067b28dae02152873c.png",
-                "神楽Mea-理解一下":"https://i0.hdslb.com/bfs/emote/d21660312d5bcc063cdcae2022b3e68a5b57e3da.png",
-                "神楽Mea-略略略":"https://i0.hdslb.com/bfs/emote/dd0870cc8d7245f89c02dbe32ecf94c4d28e05c6.png",
-                "神楽Mea-啾咪":"https://i0.hdslb.com/bfs/emote/50bc780ccba96dc0d8170f70b9671eea69f02abf.png",
-                "神楽Mea-咩":"https://i0.hdslb.com/bfs/emote/80bfbba75128aaff8cf6dfe2ee427543aa28e9a5.png",
-                "神楽Mea-你很可爱":"https://i0.hdslb.com/bfs/emote/dade9e98431c10884291e7fd1f5e94a04234a4ec.png",
-                "神楽Mea-不满么":"https://i0.hdslb.com/bfs/emote/85d4f513ea20b1328ca82bf35979577b7841dd51.png",
-                "神楽Mea-我错了":"https://i0.hdslb.com/bfs/emote/b17d7f543cee4ee00716e4ba8b88d1e0e7d9d410.png",
-                "神楽Mea-嘲讽":"https://i0.hdslb.com/bfs/emote/fc54866b7729bdc1bd7b013c31c1b5a26eeba78e.png",
-                "神楽Mea-kimo":"https://i0.hdslb.com/bfs/emote/644c67b7e47042dddeb29c4e4ed8ccc576fabe8a.png",
-                "神楽Mea-戳便便":"https://i0.hdslb.com/bfs/emote/c2f1414549d0ab115ff6c8c3f15efbd22a4eab26.png",
-                "初音未来-抱抱":"https://i0.hdslb.com/bfs/emote/193259652bf6d72a9c52f8111fcd412b31d79298.png",
-                "初音未来-nice":"https://i0.hdslb.com/bfs/emote/7f3445c37e0cacaeeeb9a9bbbc7138872ddfbc19.png",
-                "初音未来-GKD":"https://i0.hdslb.com/bfs/emote/44caa7ec800837d8860482c214ac792f4c37c490.png",
-                "初音未来-问号":"https://i0.hdslb.com/bfs/emote/eaa4e51f78ff3ba6b7a1606d0fb44482515b4424.png",
-                "初音未来-吃惊":"https://i0.hdslb.com/bfs/emote/4c262d6c0686391ef129f0c2dcca0a600018f47d.png",
-                "初音未来-干杯":"https://i0.hdslb.com/bfs/emote/c5d1de20038102c003c04bb7505de51b91e39fd5.png",
-                "初音未来-端碗":"https://i0.hdslb.com/bfs/emote/3de27d6f8e01b1a8db09a64a56d3a744b33ad435.png",
-                "初音未来-害怕":"https://i0.hdslb.com/bfs/emote/7fedbd2eb20d6e30985b02c086392f1386db2b9c.png",
-                "初音未来-加油":"https://i0.hdslb.com/bfs/emote/4943a9be0a3134125c7d585b4dafde79a9a1990a.png",
-                "初音未来-哭了":"https://i0.hdslb.com/bfs/emote/db9b01e5808967a32ed644b490ab47faf0f29ce3.png",
-                "初音未来-困了":"https://i0.hdslb.com/bfs/emote/3d442c1d2acc751489ec43d55e5d3b7042e49910.png",
-                "初音未来-鬼脸":"https://i0.hdslb.com/bfs/emote/91b2bb5d0db1a668f3269059a809e5330f0a2bd0.png",
-                "初音未来-期待":"https://i0.hdslb.com/bfs/emote/f361daba4c64775b05f45fd241eb43072258accd.png",
-                "初音未来-生气":"https://i0.hdslb.com/bfs/emote/c527e61be20dfbddcb21d9c07a26b161b01ecacc.png",
-                "初音未来-睡了":"https://i0.hdslb.com/bfs/emote/f9c2088fe82105c0d912e2b3a6c6db52cb1abf7f.png",
-                "初音未来-委屈":"https://i0.hdslb.com/bfs/emote/55023c31259200e5c821cac526b36e527f455d43.png",
-                "初音未来-委屈":"https://i0.hdslb.com/bfs/emote/55023c31259200e5c821cac526b36e527f455d43.png",
-                "初音未来-无语":"https://i0.hdslb.com/bfs/emote/3e32d47239d8f8f8c70cf58cc79f0f8f17383a23.png",
-                "初音未来-喜欢":"https://i0.hdslb.com/bfs/emote/6b4afbd2addead54037ba31988e8631a7fb9956a.png",
-                "初音未来-嫌弃":"https://i0.hdslb.com/bfs/emote/6560007ff02d8261dc36a55c58601cf8d7d2a680.png",
-                "初音未来-再见":"https://i0.hdslb.com/bfs/emote/06094b87ef45f7513bb4c22e049612d62cd5cd8e.png",
-                "女仆醒-摸了":"https://i0.hdslb.com/bfs/emote/79ecb3bacaa92dcce54d745d6332777cae264bc1.png",
-                "女仆醒-吃瓜":"https://i0.hdslb.com/bfs/emote/739c393ec0312e0e655cbe7161b5dc26e2cc07ef.png",
-                "女仆醒-咕了":"https://i0.hdslb.com/bfs/emote/41ac098974998742755523227b274d7b13a310f4.png",
-                "女仆醒-喝茶":"https://i0.hdslb.com/bfs/emote/200f651f545024d21eefc9bac2e9f59e67c406c3.png",
-                "女仆醒-假发":"https://i0.hdslb.com/bfs/emote/9461cf154de7f3bfcfe61bd85aebe7e84272cdef.png",
-                "女仆醒-惊讶":"https://i0.hdslb.com/bfs/emote/e9b0f737958dc893940b0ba2c192a7ef1cb005ef.png",
-                "女仆醒-彩虹":"https://i0.hdslb.com/bfs/emote/7e264e6f0c7b04c5047f44c6fea7ec018999081f.png",
-                "女仆醒-威胁":"https://i0.hdslb.com/bfs/emote/fdc25454d0fcc0c53670c1f92b0b3fe7062ae99b.png",
-                "女仆醒-醒醒":"https://i0.hdslb.com/bfs/emote/f2a0ab6d19b53ac5a67a1a79dcdfb6f2255cecc3.png",
-                "女仆醒-流鼻血":"https://i0.hdslb.com/bfs/emote/a1ce24457aeb288545821b39053ece6520f84c4a.png",
-                "女仆醒-kimo":"https://i0.hdslb.com/bfs/emote/ba71e5e0c3b28e89069899aa7049c7e8e950444e.png",
-                "女仆醒-哎嘿嘿":"https://i0.hdslb.com/bfs/emote/1034944853250dedc69a37eeac424cbb9b662382.png",
-                "女仆醒-暗中观察":"https://i0.hdslb.com/bfs/emote/a978afd4a7071e90e348210ec4d80a073cde3ff8.png",
-                "女仆醒-吃柠檬":"https://i0.hdslb.com/bfs/emote/fef26aa448b69112ef377ac3718d69bb8727847b.png",
-                "女仆醒-画稿人":"https://i0.hdslb.com/bfs/emote/49d68463ad88a09a47775d6d4964aa439a27cfad.png",
-                "女仆醒-开心":"https://i0.hdslb.com/bfs/emote/b44bcf3c4a3ee5000d1caf8d02c558103f5cd2a2.png",
-                "女仆醒-贴贴":"https://i0.hdslb.com/bfs/emote/bb2d03be7028d214f22ad98f29ba71ae12ad4e02.png",
-                "女仆醒-想桃吃":"https://i0.hdslb.com/bfs/emote/2fe00745010f3e7f2eb5def7b13652b0298b34a6.png",
-                "女仆醒-心痛":"https://i0.hdslb.com/bfs/emote/0e5b7a99d177044b3c34606b2dc7b270d311df81.png",
-                "女仆醒-？？？":"https://i0.hdslb.com/bfs/emote/bb0258b7a519404c98e1fd63783cc67538348ac5.png",
-                "花园Serena-？？？":"https://i0.hdslb.com/bfs/emote/42f7ab2a562d000929979976d30669bec042662f.png",
-                "花园Serena-安详去世":"https://i0.hdslb.com/bfs/emote/cdf595646132b98dcf1d230d351b2738d68f49c3.png",
-                "花园Serena-mua":"https://i0.hdslb.com/bfs/emote/20319d3948da83f666a643b2c8103e6da0e36721.png",
-                "花园Serena-啊！":"https://i0.hdslb.com/bfs/emote/a2e620950d577a4bae7f52f2143cf23aaa033f9d.png",
-                "花园Serena-唉":"https://i0.hdslb.com/bfs/emote/2d046cbbabd4fc39c01cfb268adf4b56fe69d276.png",
-                "花园Serena-到点了":"https://i0.hdslb.com/bfs/emote/af2f6c0dd1155f4aefb610cc6d09c135df9e6752.png",
-                "花园Serena-恭喜":"https://i0.hdslb.com/bfs/emote/c1d8361755bb135d24b3b4680fe6ba03c086b395.png",
-                "花园Serena-画好了":"https://i0.hdslb.com/bfs/emote/07db01e9df3376e659e8e80915dbe469f63939ff.png",
-                "花园Serena-哭哭":"https://i0.hdslb.com/bfs/emote/c7e1684e94ca8a1e7dd770df427ce7aa3d106f5b.png",
-                "花园Serena-猫菜瘾大":"https://i0.hdslb.com/bfs/emote/b7cc65d17b93ebb50b9a218d8a05dd2a63bccabc.png",
-                "花园Serena-猫猫祟祟":"https://i0.hdslb.com/bfs/emote/3fc4273a3cb4b189b473f0e1db51d7c064ae19c3.png",
-                "花园Serena-喵":"https://i0.hdslb.com/bfs/emote/4159859e6c9c2e0476299454b6015c2659149e3c.png",
-                "花园Serena-神奇按钮":"https://i0.hdslb.com/bfs/emote/d9a1f82dac9133cf7b569c5bcb6fb09595b9f4fa.png",
-                "花园Serena-睡":"https://i0.hdslb.com/bfs/emote/ae8ad8fd2a8d14e53938ba7dc7ca22681143dc09.png",
-                "花园Serena-头脑发热":"https://i0.hdslb.com/bfs/emote/4c18c565ff57a7eb8f3e43a742653ee5d5a514c2.png",
-                "KizunaAI-OK":"https://i0.hdslb.com/bfs/emote/cedeb4f9e41c76f86945913162491af9028f6d40.png",
-                "KizunaAI-得意脸":"https://i0.hdslb.com/bfs/emote/188543c35f368824b09d7f57371db8f690bc3de9.png",
-                "KizunaAI-嗨多摩":"https://i0.hdslb.com/bfs/emote/9f07e509af059f498203fd4a2183cabe3aefc0fa.png",
-                "KizunaAI-花q":"https://i0.hdslb.com/bfs/emote/1d49d4ef2541e1db06a6aa78a098d5ca73191ed3.png",
-                "KizunaAI-怀疑":"https://i0.hdslb.com/bfs/emote/72a193267f677545a8e1374324280ff71b5b25ad.png",
-                "KizunaAI-惊讶":"https://i0.hdslb.com/bfs/emote/a8e14af6d52e668a59be38c2fc4450d47d24e80d.png",
-                "KizunaAI-拿第一":"https://i0.hdslb.com/bfs/emote/8a2187235ec11065b5446dcfe49ef9db1a629000.png",
-                "KizunaAI-天才天才":"https://i0.hdslb.com/bfs/emote/10cdd9af63be0014d62e596c4534e3166dee24de.png",
-                "KizunaAI-摇晃悠悠":"https://i0.hdslb.com/bfs/emote/658bb1872ac8e3d7d22323f1eeff8e3591b9e308.png",
-                "KizunaAI-原来如此":"https://i0.hdslb.com/bfs/emote/e7d6d59e4ce5a73302898b8d694658bd2cfb6db9.png",
-                "射手座-好家伙":"https://i0.hdslb.com/bfs/emote/502ca4fb456486d9584d23959a9c381b4246422d.png",
-                "射手座-浪起来！":"https://i0.hdslb.com/bfs/emote/6339c7ff60c31cdb42af96e94552c790a03401f6.png",
-                "射手座-乐观":"https://i0.hdslb.com/bfs/emote/1c0a87af0351c1ec4b9bdc884795b467320e2b15.png",
-                "射手座-撩你":"https://i0.hdslb.com/bfs/emote/b99cc10e1e9be92f25079adc861cf9ba27b01852.png",
-                "射手座-认识一下":"https://i0.hdslb.com/bfs/emote/b63cc2582b42d4ae77c8316f4cb8473882582983.png",
-                "射手座-随便":"https://i0.hdslb.com/bfs/emote/5a77ddb68e4b6551b1a22fb2d5b02be7f757f38c.png",
-                "射手座-贴贴":"https://i0.hdslb.com/bfs/emote/1cd18280f2e54d7383178795e90ffc3b929c5ea1.png",
-                "射手座-突然消失":"https://i0.hdslb.com/bfs/emote/af955884bb59435feca2888526bb1bd0b308ad38.png",
-                "射手座-真麻烦":"https://i0.hdslb.com/bfs/emote/a5752f6e0d1c4967c9634e87ff12fcea1f33f558.png",
-                "射手座-自由万岁！":"https://i0.hdslb.com/bfs/emote/f04543bb7fd70351d152dfde8a9fd39d69c047bf.png"
-            }
-        });
-    </script>
-    <script type="text/javascript">
-        // jinrishici.load(function (result) {
-        //     var jrsc_plac = result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin
-        //         .dynasty + " · " + result.data.origin.author;
-        //     if (jrsc_plac != undefined)
-        //         document.getElementById("veditor").setAttribute("placeholder", jrsc_plac);
-        // 
-        var jrsc = '所有的不期而遇都在路上';
-        // jinrishici.load(function (result) {
-        //         // 自己的处理逻辑
-        //         jrsc = result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin
-        //          .dynasty + " · " + result.data.origin.author;
-        //     });
-    </script> 
-    
-</body>
-                        <div class="clear"></div>
-                        
-                    </div>
-                </div>
-                </div>
-                <div class="col-md-1 col-lg-2"></div>
-                <div id="bg">
-                </div>
-            </div>
-            
+				<li id="menu-item-30" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30"><a title="首页" href="/">首页</a></li>
+                
+				<li id="menu-item-30" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30"><a title="归档" href="/archives">归档</a></li>
+                
+				<li id="menu-item-30" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30"><a title="标签" href="/tags">标签</a></li>
+                
+	
+			</ul>
+		</nav>			
+	</div>
+	<!--跟随滑动的顶部结束-->
+    <!-- middle -->
+    <div class="main-container-middle"></div>
+    <!-- right -->
+    <div id="sidebar" class="main-container-right">
         
-        <div class="toc-container">
+            <!-- toc -->
+            
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
             <ul class="markdownIt-TOC">
 <li>
 <ul>
@@ -886,253 +64,174 @@
 </li>
 </ul>
 
-    </div>
-    </div>
-    </div>
-    <div class="tog">
-        <div class="toggleContainer">
-            <div class="toggle">
-                <i class="fas fa-angle-double-up"></i>
-            </div>
         </div>
-    </div>
-    <div id="bgchoice" style="display: none">default</div>
-    
-    <div id="bgurl" style="display:none">/media/images/custom-bgimage.jpeg</div>
-    
-    </div>
-</body>
-<script>
-    var img = $("img");
-    for (var i = 0; i < img.length; i++) {
-        if (img.eq(i).attr("class") == undefined) {
-            img.eq(i).attr("class", "lazyload");
-            var imgsrc = img.eq(i).attr("src");
-            img.eq(i).attr("data-original", imgsrc);
-            img.eq(i).attr("src", "");
-            img.eq(i).hide();
-        }
-    }
-</script>
-<script>
-    hljs.initHighlightingOnLoad();
-</script>
-<script>
-    //寻找所有code标签，加复制按钮鸭！(行内代码除外)
-    var codes = document.getElementsByTagName('code');
-    if (codes.length) {
-        for (var i = 0; i < codes.length; i++) {
-            //高度/行高=文本行数
-            // var rowNum=Math.round(codes[i].height()/parseFloat(codes[i].css('line-height')));
-            // console.log("当前有"+rowNum+"行");
-            var code_id = "code_id_" + i;
-            codes[i].setAttribute("id", code_id);
-            var ci = "#" + code_id;
-            var codedot = $(ci);
-            var rowNum = Math.round(codedot.height() / parseFloat(codedot.css('line-height')));
-            if (rowNum <= 1) continue;
-            var btn = document.createElement("button");
-            btn.setAttribute("class", "copybt");
-            btn.setAttribute("data-clipboard-target", "#" + code_id);
-            btn.innerHTML = '复制代码';
-            codes[i].parentNode.insertBefore(btn, codes[i]);
-        }
-    };
-    var cop = new ClipboardJS('.copybt');
-    var codeCopyText = $("#codeCopyText").html();
-    cop.on('success', function (e) {
-        alert(codeCopyText);
-        e.clearSelection();
-    });
-    cop.on('error', function (e) {
-        alert("矮油，复制失败了...手动复制吧勇士！");
-        e.clearSelection();
-    });
-</script>
-
-<script>
-    $(function () {
-        $('.toggleContainer').click(function () {
-            $('html,body').animate({
-                scrollTop: '0px'
-            }, 800);
-        });
-        $(window).scroll(function () {
-            var st = $(window).scrollTop();
-            if (st > 30) {
-                $(".toggleContainer").fadeIn(400);
-            } else {
-                $(".toggleContainer").fadeOut(100);
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = jQuery('.grap :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = jQuery('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = jQuery(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = jQuery(alis[i]).offset().top;
+                    // console.log(a_height,scroll_height,sidebar_alis[i])
+                    // var height_diff=scroll_height-a_height;
+                    // if (height_diff>-2&&height_diff<2) {
+                    if (scroll_height>a_height-2) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        jQuery(sidebar_alis[i]).addClass('on');
+                    }
+                }
             }
-        });
-    });
-</script>
-
-<script>
-    var bgchoice = $('#bgchoice').html();
-    var bg = $('#bg');
-    var bgurl = document.getElementById("bgurl").innerHTML;
-    if (bgchoice == 'default')
-        for (var i = 0; i < 3; i++)
-            bgurl = bgurl.replace("\\", "/");
-    bg.css("background", "url('" + bgurl + "')");
-</script>
-
-
-<script src="https://shirley-hz-git-hub-io.vercel.app//media/js/index.js"></script>
-
-
-
-<!-- 动态更改上(下)一篇博客图片框长宽 -->
-<script>
-    npcontainer = document.querySelector('#npcontainer');
-    npstyle = window.getComputedStyle(npcontainer, null);
-    npwidth = npstyle.width;
-    npheight = 0.6 * Number(npwidth.replace("px", ""));
-    npheight = npheight.toString() + "px";
-    var op = $(".opimg");
-    op.css("height", npheight);
-</script>
-
-<script src="https://shirley-hz-git-hub-io.vercel.app//media/share/dist/Share.js"></script>
-
-<script>
-    var avatarSrc = $(".avatar").attr("src");
-    var dp = document.getElementsByClassName("describtion")[0].innerHTML;
-</script>
-
-
-<script>
-    var title = document.getElementById("texttitle").getElementsByTagName("h2");
-    
-    var share = new Share('.share', {
-        title: title[0].innerHTML,
-        initialized: true,
-        //默认获取网站描述
-        description: dp,
-        //网站图片默认获取的是设置的用户头像
-        image: avatarSrc,
-        //激活的分享网站
-        sites: ["weibo", "qq", "wechat", "douban", "qzone", "facebook", "twitter", "google"],
-        //微信分享PC端会生成二维码分享,移动端如果可以唤起微信最好
-        wechatQrcodeTitle: "微信扫一扫：分享", // 微信二维码提示文字
-        wechatQrcodeHelper: '<p>微信里扫一下二维码</p><p>便可将本文分享至朋友圈。</p>',
-        //关闭的网站分享
-        disabled: ['google', 'linkedin'],
-        wechatQrcodePosition: 'bottom'
-    });
-
-    //点击分享按钮展现出分享icons
-    var sharebtnTag = false;
-    $(".sharebtn").click(function () {
-        if(!sharebtnTag)
-        {
-            $(".share").show();
-            sharebtnTag = true;
-        }
-        else
-        {
-            $(".share").hide();
-            sharebtnTag = false;
-        }
-    })
-
-    var donatebtnTag = false;
-    $(".donateImg").click(function () {
-        if(!donatebtnTag)
-        {
-            $(".donate").show();
-            donatebtnTag = true;
-        }
-        else{
-            $(".donate").hide();
-            donatebtnTag = false;
-        }
-    })
-
-    //加载后的事件同步（阅读量、移动端评论等
-    window.onload=function(){
-        getHotnum();
-        var sharepc = $(".share").eq(0).html();
-        $(".share").eq(1).html(sharepc);
-        document.getElementById("veditor").setAttribute("placeholder", jrsc);
-        aplayerbtnInit();
-    }
-</script>
-
-
-<script>
-    jQuery(document).ready(function ($) {
-        function lazyload() {
-            var oLazyload = $("img.lazyload"),
-                fLazyload = function (hLazyload) {
-                    var nLazyload = $(window).height() + $(document).scrollTop();
-                    oLazyload.each(function () {
-                        $(this).offset().top < nLazyload && ($(this).trigger("appear"), oLazyload =
-                            oLazyload.not(this));
-                    }), 0 == oLazyload.length && $(window).unbind("scroll", fLazyload);
-                };
-            oLazyload.each(function () {
-                $(this).one("appear", function () {
-                    $(this).attr("src", $(this).attr("data-original"));
-                    $(this).fadeIn(500);
-                });
-            }), $(window).bind("scroll", fLazyload), fLazyload();
-        }
-        lazyload();
-    });
-</script>
-
-<!-- <script src="https://shirley-hz-git-hub-io.vercel.app//media/js/av-min.js"></script> -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@3.13.0/dist/av-min.js"></script> -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.6.1/dist/av-live-query-min.js"></script> -->
-
-<script>
-    function getHotnum() {
-        //文章阅读热度（重构，利用leancloud原生api）
-        var pl = $("#pl").html();
-        var rootaddr = $("#rootaddr").html();
-        pl = pl.replace(rootaddr, "");
-
-        var appid = 'cSccyCSxzjSgz2ybthLePFwB-MdYXbMMI';
-        var appkey = 'O6eYefleVttxjMFOzOKg4mnC';
-        console.log(appid, appkey)
-        if(AV==undefined)
-            AV.init({
-                appId: appid,
-                appKey: appkey
+            jQuery(function() {
+                /*绑定滚动事件 */
+                jQuery(window).bind('scroll', locateCatelogList);
             });
-        const query = new AV.Query('Counter');
-        query.equalTo('url', pl);
-        var time = 'Loading...';
-        query.find().then(function (results) {
-            console.log(results)
-            if (results.length == 0) {
-                console.log("0")
-                var NewCounter = AV.Object.extend('Counter');
-                var nc = new NewCounter();
-                nc.save({
-                    time: 1,
-                    title: "关于",
-                    url: pl,
-                    xid: pl,
-                }).then(function (object) {
-                    $(".hotnum").eq(0).html(1);
-                    $(".hotnum").eq(1).html(1);
-                });
-            } else {
-                id = results[0].id;
-                var todo = AV.Object.createWithoutData('Counter', id);
-                time = results[0].attributes.time + 1;
-                todo.set("time", time);
-                todo.save();
-                console.log(todo);
-                $(".hotnum").eq(0).html(time);
-                $(".hotnum").eq(1).html(time);
-            }
+        </script>
+    </div>
+    
+        
+    </div>
+	<div class="surface-content">
+        <main class="main-content">
+            <section class="section-body">
+                <header class="section-header u-textAlignCenter">
+                    <h2 class="grap--h2">关于</h2>
+                    <div class="block-postMetaWrap">
+                        <time>2019-01-25</time>
+                    </div>
+                </header>
+                <div id="postdetail">
+                    <div class="grap">
+                        
+                        <blockquote>
+<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
+</blockquote>
+<h2 id="关于本站">🏠 关于本站</h2>
+<h2 id="博主是谁">👨‍💻 博主是谁</h2>
+<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
+<h2 id="联系我呀">📬 联系我呀</h2>
 
-        }, function (error) {
-            console.log(error)
-        });
-    }
+                    </div>
+                    <div class="post--keywords" itemprop="keywords">
+                        
+                    </div>
+                </div>
+                
+                    
+                        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '',
+    clientSecret: '',
+    repo: '',
+    owner: '',
+    admin: [''],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
 </script>
+
+                    
+
+                    
+                
+            </section>
+        </main>
+    </div>
+	<footer class="site-footer u-textAlignCenter">
+    	<div class="footer-branding">
+            <a href="https://shirley-hz-git-hub-io.vercel.app/" title="来一颗酸酸橙">来一颗酸酸橙</a>
+									
+			         </div>
+		 <hr />
+		 <div class="social-links">
+		                       
+                            
+                           
+                            
+                           
+                            	
+			<span class="social-link"><a href="https://github.com/ShirleyHz/" target="_blank"><i class="iconfont icon-github"></i></a></span>	
+			                         
+                           
+                            
+                           
+                            
+                           
+                            
+                           
+                            
+                           
+                            
+                           
+                            
+                           
+                            
+                           
+                            
+                           
+                            
+                           
+				</div>
+        <div class="footer-copy">
+                Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+        </div>
+
+    </footer>
+	<div class="back-to-top u-hide" onclick="backToTop();"><i class="iconfont icon-xiangshang"></i></div>
+
+<script type='text/javascript' src='https://shirley-hz-git-hub-io.vercel.app//media/scripts/main.js'></script>
+
+    <script>
+        window.onload=function(){
+            document.getElementById("sidebar").classList.add("sidebar_fixed");
+            // 同理，把之前添加的元素移除即可
+            document.getElementById("sidebar").classList.remove("sidebar_absolute");
+            jQuery("#sidebar").css({
+                "top":"150px"
+            })
+        }
+
+        jQuery(window).scroll(function() {
+            //获取 id="course_container" 元素，offsetTop是当前元素·距离网页窗口顶部的距离
+            var offset_top = document.getElementById("sidebar").offsetTop
+            // console.log("tab距离顶部的距离：" + offset_top)
+
+            var bottom= document.getElementById("postdetail").offsetTop;
+            var height= document.getElementById("postdetail").offsetHeight;
+            var sidebar_height=document.getElementById("sidebar").offsetHeight;
+
+            //获取垂直滚动的距离（scrollTop()是从顶部开始滚动产生的距离）
+            var scroll_top = jQuery(document).scrollTop();
+
+            if (scroll_top >bottom+height-sidebar_height-50) {
+                // 到达顶部位置，动态的添加元素属性，并给元素添加相应的元素样式
+                document.getElementById("sidebar").classList.remove("sidebar_fixed");
+                document.getElementById("sidebar").classList.add("sidebar_absolute");
+                jQuery("#sidebar").css({
+                    "top":bottom+height-sidebar_height+100
+                })
+            } else {
+                document.getElementById("sidebar").classList.add("sidebar_fixed");
+                // 同理，把之前添加的元素移除即可
+                document.getElementById("sidebar").classList.remove("sidebar_absolute");
+                jQuery("#sidebar").css({
+                    "top":"150px"
+                })
+            }
+        })
+    </script>
+</body>
+</html>
