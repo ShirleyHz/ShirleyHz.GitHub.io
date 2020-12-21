@@ -8,10 +8,29 @@
     <link rel='stylesheet' id='puma-css'  href='https://at.alicdn.com/t/font_1306644_jwtuc2zzbrd.css' media='screen' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script type='text/javascript' src='https://shirley-hz-git-hub-io.vercel.app//media/scripts/jquery.js'></script>
+    <script type='text/javascript' src='https://shirley-hz-git-hub-io.vercel.app//media/scripts/jquery.lazyload.min.js'></script>
     <script type='text/javascript' src='https://shirley-hz-git-hub-io.vercel.app//media/scripts/jquery-migrate.min.js'></script>
+    <script type='text/javascript' src='https://shirley-hz-git-hub-io.vercel.app//media/scripts/bootstrap.min.js'></script>
     <script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
     <script >hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript">
+        jQuery(function($) {
+            $("img.lazy").lazyload({
+                effect: "fadeIn",  // 懒加载动画
+                // threshold: 180  // 在图片距离屏幕180px时提前载入
+                threshold: 0  // 在图片距离屏幕180px时提前载入
+            });
+            // tooltip
+            $('[data-toggle="tooltip"]').tooltip();
+
+            // 目录
+            $('#tool-toc').click(function () {
+                $('.post-toc').toggle();
+            });
+        });
+        
+    </script>>
     
 </head>
 <body class="single single-post postid-3788 single-format-standard">
@@ -27,7 +46,7 @@
 			<span class="menu-icon"></span>
 		</a>
 		
-	</header>
+</header>
 		<div class="site-navigation-wrapper">
 		<nav id="site-navigation" class="main-navigation" role="navigation">
 			<ul class="primary-nav">
@@ -38,18 +57,22 @@
                 
 				<li id="menu-item-30" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30"><a title="标签" href="/tags">标签</a></li>
                 
+				<li id="menu-item-30" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30"><a title="图廊" href="/gallery">图廊</a></li>
+                
 	
 			</ul>
 		</nav>			
 	</div>
 	<!--跟随滑动的顶部结束-->
-    <!-- middle -->
-    <div class="main-container-middle"></div>
-    <!-- right -->
-    <div id="sidebar" class="main-container-right">
-        
-            <!-- toc -->
-            
+    <!-- 等gridea出自定义页面功能再优化一下 -->
+    
+		<!-- middle -->
+		<div class="main-container-middle"></div>
+		<!-- right -->
+		<div id="sidebar" class="main-container-right">
+			
+				<!-- toc -->
+				
     <div class="toc-card i-card ">
         <div class="toc-title i-card-title">目录</div>
         <div class="toc-content">
@@ -99,9 +122,6 @@
                 for (var i = 0; i < alis.length; i++) {
                     /*获取锚点集合中的元素分别到顶点的距离*/
                     var a_height = jQuery(alis[i]).offset().top;
-                    // console.log(a_height,scroll_height,sidebar_alis[i])
-                    // var height_diff=scroll_height-a_height;
-                    // if (height_diff>-2&&height_diff<2) {
                     if (scroll_height>a_height-2) {
                         /*高亮显示*/
                         sidebar_alis.removeClass('on');
@@ -116,25 +136,25 @@
         </script>
     </div>
     
-        
-    </div>
-	<div class="surface-content">
-        <main class="main-content">
-            <section class="section-body">
-                <header class="section-header u-textAlignCenter">
-                    <h2 class="grap--h2">产品经验分享会总结</h2>
-                    <div class="block-postMetaWrap">
-                        <time>2020-12-16</time>
-                    </div>
-                </header>
-                <div id="postdetail">
-                    <div class="grap">
-                        
-                            <p class="with-img">
-                                <img width="1139" height="759" src="https://shirley-hz-git-hub-io.vercel.app//post-images/Emk1q4wPG.jpeg" class="attachment-full size-full wp-post-image" alt="产品经验分享会总结" />
-                            </p>
-                        
-                        <h2 id="互联网公司及岗位介绍">互联网公司及岗位介绍</h2>
+			
+		</div>
+		<div class="surface-content">
+			<main class="main-content">
+				<section class="section-body">
+					<header class="section-header u-textAlignCenter">
+						<h2 class="grap--h2">产品经验分享会总结</h2>
+						<div class="block-postMetaWrap">
+							<time>2020-12-16</time>
+						</div>
+					</header>
+					<div id="postdetail">
+						<div class="grap">
+							
+								<p class="with-img">
+									<img width="1139" height="759" src="https://shirley-hz-git-hub-io.vercel.app//post-images/Emk1q4wPG.jpeg" class="attachment-full size-full wp-post-image" alt="产品经验分享会总结" />
+								</p>
+							
+							<h2 id="互联网公司及岗位介绍">互联网公司及岗位介绍</h2>
 <h3 id="互联网公司分类传统分类方式">互联网公司分类（传统分类方式）</h3>
 <p><strong>A 媒体</strong>：腾讯、百度、网易、今日头条、微博</p>
 <p><strong>B 服务</strong>：</p>
@@ -227,14 +247,14 @@
 <figure data-type="image" tabindex="4"><img src="https://i.loli.net/2020/12/16/yGPamTIVuo45UER.png" alt="image.png" loading="lazy"></figure>
 <p>龙哥 8小时演讲</p>
 
-                    </div>
-                    <div class="post--keywords" itemprop="keywords">
-                         <a href="https://shirley-hz-git-hub-io.vercel.app/qmnKgIBQV/" class="post--keyword" data-title="产品" data-type="post_tag" data-term-id="39">产品</a> 
-                    </div>
-                </div>
-                
-                    
-                        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+						</div>
+						<div class="post--keywords" itemprop="keywords">
+							 <a href="https://shirley-hz-git-hub-io.vercel.app/qmnKgIBQV/" class="post--keyword" data-title="产品" data-type="post_tag" data-term-id="39">产品</a> 
+						</div>
+					</div>
+<!--					-->
+<!--						-->
+<!--							<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
 <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 <div id="gitalk-container"></div>
@@ -254,14 +274,55 @@
   gitalk.render('gitalk-container')
 
 </script>
+-->
+<!--						-->
 
-                    
+<!--						-->
+<!--					-->
+				</section>
+			</main>
+		</div>
+		<script>
+			window.onload=function(){
+				document.getElementById("sidebar").classList.add("sidebar_fixed");
+				// 同理，把之前添加的元素移除即可
+				document.getElementById("sidebar").classList.remove("sidebar_absolute");
+				jQuery("#sidebar").css({
+					"top":"150px"
+				})
+			}
 
-                    
-                
-            </section>
-        </main>
-    </div>
+			jQuery(window).scroll(function() {
+				//获取 id="course_container" 元素，offsetTop是当前元素·距离网页窗口顶部的距离
+				var offset_top = document.getElementById("sidebar").offsetTop
+				// console.log("tab距离顶部的距离：" + offset_top)
+
+				var bottom= document.getElementById("postdetail").offsetTop;
+				var height= document.getElementById("postdetail").offsetHeight;
+				var sidebar_height=document.getElementById("sidebar").offsetHeight;
+
+				//获取垂直滚动的距离（scrollTop()是从顶部开始滚动产生的距离）
+				var scroll_top = jQuery(document).scrollTop();
+
+				if (scroll_top >bottom+height-sidebar_height-50) {
+					// 到达顶部位置，动态的添加元素属性，并给元素添加相应的元素样式
+					document.getElementById("sidebar").classList.remove("sidebar_fixed");
+					document.getElementById("sidebar").classList.add("sidebar_absolute");
+					jQuery("#sidebar").css({
+						"top":bottom+height-sidebar_height+100
+					})
+				} else {
+					document.getElementById("sidebar").classList.add("sidebar_fixed");
+					// 同理，把之前添加的元素移除即可
+					document.getElementById("sidebar").classList.remove("sidebar_absolute");
+					jQuery("#sidebar").css({
+						"top":"150px"
+					})
+				}
+			})
+		</script>
+    
+
 	<footer class="site-footer u-textAlignCenter">
     	<div class="footer-branding">
             <a href="https://shirley-hz-git-hub-io.vercel.app/" title="来一颗酸酸橙">来一颗酸酸橙</a>
@@ -305,45 +366,5 @@
 	<div class="back-to-top u-hide" onclick="backToTop();"><i class="iconfont icon-xiangshang"></i></div>
 
 <script type='text/javascript' src='https://shirley-hz-git-hub-io.vercel.app//media/scripts/main.js'></script>
-
-    <script>
-        window.onload=function(){
-            document.getElementById("sidebar").classList.add("sidebar_fixed");
-            // 同理，把之前添加的元素移除即可
-            document.getElementById("sidebar").classList.remove("sidebar_absolute");
-            jQuery("#sidebar").css({
-                "top":"150px"
-            })
-        }
-
-        jQuery(window).scroll(function() {
-            //获取 id="course_container" 元素，offsetTop是当前元素·距离网页窗口顶部的距离
-            var offset_top = document.getElementById("sidebar").offsetTop
-            // console.log("tab距离顶部的距离：" + offset_top)
-
-            var bottom= document.getElementById("postdetail").offsetTop;
-            var height= document.getElementById("postdetail").offsetHeight;
-            var sidebar_height=document.getElementById("sidebar").offsetHeight;
-
-            //获取垂直滚动的距离（scrollTop()是从顶部开始滚动产生的距离）
-            var scroll_top = jQuery(document).scrollTop();
-
-            if (scroll_top >bottom+height-sidebar_height-50) {
-                // 到达顶部位置，动态的添加元素属性，并给元素添加相应的元素样式
-                document.getElementById("sidebar").classList.remove("sidebar_fixed");
-                document.getElementById("sidebar").classList.add("sidebar_absolute");
-                jQuery("#sidebar").css({
-                    "top":bottom+height-sidebar_height+100
-                })
-            } else {
-                document.getElementById("sidebar").classList.add("sidebar_fixed");
-                // 同理，把之前添加的元素移除即可
-                document.getElementById("sidebar").classList.remove("sidebar_absolute");
-                jQuery("#sidebar").css({
-                    "top":"150px"
-                })
-            }
-        })
-    </script>
 </body>
 </html>
