@@ -34,6 +34,7 @@
     
 </head>
 <body class="home blog">
+
 	<!--加入跟随滑动的顶部-->
 	<header id="masthead" class="site-header" role="banner">
 		<div class="site-branding">
@@ -65,22 +66,23 @@
 	</div>
 	<!--跟随滑动的顶部结束-->
 	<!--大屏banner开始-->
-    
-	<div class="site-banner u-textAlignCenter hasImage" style="background-image:url(https://i.loli.net/2020/12/18/ORhHJ72DIMCEF8v.png)">
+
+	<div class="site-banner u-textAlignCenter hasImage" style="background-image:url( https://i.loli.net/2020/12/18/ORhHJ72DIMCEF8v.png )">
 		<div class="fade-cover"></div>
-        <div class="banner-txt">
-            <h2>来一颗酸酸橙</h2>
-        </div>
+		<div class="banner-txt">
+			<h2>来一颗酸酸橙</h2>
+		</div>
         <div class="banner-description">
-            <p class="ml1">
-                <span class="text-wrapper">
-                    <span class="line line1"></span>
-                    <span class="letters">永远热爱｜ 我的月亮永悬不落</span>
-                    <span class="line line2"></span>
-                </span>
-            </p>
-            <!--            <p>永远热爱｜ 我的月亮永悬不落</p>-->
+            <h1 class="ml1">
+            <span class="text-wrapper">
+                <span class="line line1"></span>
+                <span class="letters">永远热爱｜ 我的月亮永悬不落</span>
+                <span class="line line2"></span>
+            </span>
+            </h1>
+<!--            <p>永远热爱｜ 我的月亮永悬不落</p>-->
         </div>
+
 	</div>
 	<!--大屏banner结束-->
 	<div class="site-main">
@@ -106,98 +108,78 @@
                 7 min read .
         </div>
     </div>
-</article>
-
-            <article class="block block--inset block--list">
-    <h2 class="block-title post-featured" itemprop="headline">
-        <a href="https://shirley-hz-git-hub-io.vercel.app/Emk1q4wPG/">产品经验分享会总结</a>
-    </h2>
-    <div class="block-postMetaWrap u-textAlignCenter">
-        <time>2020-12-16</time>
-    </div>
-    <div class="block-snippet block-snippet--subtitle grap" itemprop="about">
+            </article>
+                    
+        </section>
             
-                    <p class="with-img"><img width="1139" height="759" src="https://shirley-hz-git-hub-io.vercel.app//post-images/Emk1q4wPG.jpeg" class="attachment-full size-full wp-post-image" alt="产品经验分享会总结" /></p>
-                    
-                    
-                <p class="u-textAlignCenter"><a class="more-link" href="https://shirley-hz-git-hub-io.vercel.app/Emk1q4wPG/" title="产品经验分享会总结">READ MORE</a></p>
+        </main>
     </div>
-    <div class="block-footer">
-        In  <a href="https://shirley-hz-git-hub-io.vercel.app/qmnKgIBQV/" rel="category tag">产品</a>.  
-        <div class="block-footer-inner">
-                3 min read .
-        </div>
     </div>
-</article>
 
-</section>
-
-    </main>
-</div></div>
-<script type="text/javascript">
-//点击加载更多
-jQuery(document).ready(function($) {
-    //点击下一页的链接(即那个a标签)
-    $(' .button').click(function() {
-        $this = $(this);
-        $this.addClass('loading').text('正在努力加载'); //给a标签加载一个loading的class属性，用来添加加载效果
-        var href = $this.attr('href'); //获取下一页的链接地址
-        if (href != undefined) { //如果地址存在
-            $.ajax({ //发起ajax请求
-                url: href,
-                //请求的地址就是下一页的链接
-                type: 'get',
-                //请求类型是get
-                error: function(request) {
-                    //如果发生错误怎么处理
-                },
-                success: function(data) { //请求成功
-                    $this.removeClass('loading').text('点击查看更多'); //移除loading属性
-                    var $res = $(data).find('.block--list '); //从数据中挑出文章数据，请根据实际情况更改
-                    $('.blockGroup').append($res.fadeIn(500)); //将数据加载加进posts-loop的标签中。
-                    var newhref = $(data).find(' .button').attr('href'); //找出新的下一页链接
-                    if (newhref != undefined) {
-                        $('.button').attr('href', newhref);
-                    } else {
-                        $('.button').remove(); //如果没有下一页了，隐藏
-                    }
+    <script type="text/javascript">
+        //点击加载更多
+        jQuery(document).ready(function($) {
+            //点击下一页的链接(即那个a标签)
+            $(' .button').click(function() {
+                $this = $(this);
+                $this.addClass('loading').text('正在努力加载'); //给a标签加载一个loading的class属性，用来添加加载效果
+                var href = $this.attr('href'); //获取下一页的链接地址
+                if (href != undefined) { //如果地址存在
+                    $.ajax({ //发起ajax请求
+                        url: href,
+                        //请求的地址就是下一页的链接
+                        type: 'get',
+                        //请求类型是get
+                        error: function(request) {
+                            //如果发生错误怎么处理
+                        },
+                        success: function(data) { //请求成功
+                            $this.removeClass('loading').text('点击查看更多'); //移除loading属性
+                            var $res = $(data).find('.block--list '); //从数据中挑出文章数据，请根据实际情况更改
+                            $('.blockGroup').append($res.fadeIn(500)); //将数据加载加进posts-loop的标签中。
+                            var newhref = $(data).find(' .button').attr('href'); //找出新的下一页链接
+                            if (newhref != undefined) {
+                                $('.button').attr('href', newhref);
+                            } else {
+                                $('.button').remove(); //如果没有下一页了，隐藏
+                            }
+                        }
+                    });
                 }
+                return false;
             });
-        }
-        return false;
-    });
-});
+        });
 
-//博客描述动画
-var textWrapper = document.querySelector('.ml1 .letters');
-textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+        //博客描述动画
+        var textWrapper = document.querySelector('.ml1 .letters');
+        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
-anime.timeline({loop: true})
-    .add({
-        targets: '.ml1 .letter',
-        scale: [0.3,1],
-        opacity: [0,1],
-        translateZ: 0,
-        easing: "easeOutExpo",
-        duration: 600,
-        delay: (el, i) => 70 * (i+1)
-    }).add({
-    targets: '.ml1 .line',
-    scaleX: [0,1],
-    opacity: [0.5,1],
-    easing: "easeOutExpo",
-    duration: 700,
-    offset: '-=875',
-    delay: (el, i, l) => 80 * (l - i)
-}).add({
-    targets: '.ml1',
-    opacity: 0,
-    duration: 1000,
-    easing: "easeOutExpo",
-    delay: 1000
-});
-</script>
-	<footer class="site-footer u-textAlignCenter">
+        anime.timeline({loop: true})
+            .add({
+                targets: '.ml1 .letter',
+                scale: [0.3,1],
+                opacity: [0,1],
+                translateZ: 0,
+                easing: "easeOutExpo",
+                duration: 600,
+                delay: (el, i) => 70 * (i+1)
+            }).add({
+            targets: '.ml1 .line',
+            scaleX: [0,1],
+            opacity: [0.5,1],
+            easing: "easeOutExpo",
+            duration: 700,
+            offset: '-=875',
+            delay: (el, i, l) => 80 * (l - i)
+        }).add({
+            targets: '.ml1',
+            opacity: 0,
+            duration: 1000,
+            easing: "easeOutExpo",
+            delay: 1000
+        });
+    </script>
+    	<footer class="site-footer u-textAlignCenter">
     	<div class="footer-branding">
             <a href="https://shirley-hz-git-hub-io.vercel.app/" title="来一颗酸酸橙">来一颗酸酸橙</a>
 									

@@ -2,14 +2,75 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://shirley-hz-git-hub-io.vercel.app/</id>
     <title>来一颗酸酸橙</title>
-    <updated>2020-12-21T05:59:50.283Z</updated>
+    <updated>2021-01-27T09:16:20.009Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://shirley-hz-git-hub-io.vercel.app/"/>
     <link rel="self" href="https://shirley-hz-git-hub-io.vercel.app/atom.xml"/>
     <subtitle>永远热爱｜ 我的月亮永悬不落</subtitle>
     <logo>https://shirley-hz-git-hub-io.vercel.app/images/avatar.png</logo>
     <icon>https://shirley-hz-git-hub-io.vercel.app/favicon.ico</icon>
-    <rights>All rights reserved 2020, 来一颗酸酸橙</rights>
+    <rights>All rights reserved 2021, 来一颗酸酸橙</rights>
+    <entry>
+        <title type="html"><![CDATA[医疗数据扩增--间质比简介]]></title>
+        <id>https://shirley-hz-git-hub-io.vercel.app/BWiEYHpNS/</id>
+        <link href="https://shirley-hz-git-hub-io.vercel.app/BWiEYHpNS/">
+        </link>
+        <updated>2021-01-27T08:31:06.000Z</updated>
+        <summary type="html"><![CDATA[<p>初步了解肿瘤间质比及深度学习在该领域的应用。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>初步了解肿瘤间质比及深度学习在该领域的应用。</p>
+<!-- more -->
+<h1 id="一-领域知识">一、领域知识</h1>
+<p><strong>肿瘤间质</strong>是肿瘤组织中除肿瘤细胞外其他成分的统称。其组成包括细胞成分（间质细胞）和非细胞成分两大类。<strong>肿瘤间质</strong>和<strong>肿瘤细胞</strong>相互作用共同决定肿瘤的生物学行为 （生长，浸润，转移等）。由于对肿瘤间质认识的演化，促进了肿瘤症治疗从单纯杀死肿瘤细胞到考虑肿瘤细胞与间质，肿瘤细胞与人体的整体相互作用的个体化治疗的进展。</p>
+<p><strong>肿瘤间质比(tumor-stroma ratio TSR)</strong>：可以定义为</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mi>S</mi><mi>R</mi><mo>=</mo><mn>100</mn><mi mathvariant="normal">％</mi><mo>×</mo><mi mathvariant="normal">瘤</mi><mi mathvariant="normal">内</mi><mi mathvariant="normal">基</mi><mi mathvariant="normal">质</mi><mi mathvariant="normal">面</mi><mi mathvariant="normal">积</mi><mi mathvariant="normal">/</mi><mo>(</mo><mi mathvariant="normal">肿</mi><mi mathvariant="normal">瘤</mi><mi mathvariant="normal">面</mi><mi mathvariant="normal">积</mi><mo>+</mo><mi mathvariant="normal">瘤</mi><mi mathvariant="normal">内</mi><mi mathvariant="normal">基</mi><mi mathvariant="normal">质</mi><mi mathvariant="normal">面</mi><mi mathvariant="normal">积</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">TSR = 100％×瘤内基质面积/ (肿瘤面积+瘤内基质面积)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord cjk_fallback">％</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">瘤</span><span class="mord cjk_fallback">内</span><span class="mord cjk_fallback">基</span><span class="mord cjk_fallback">质</span><span class="mord cjk_fallback">面</span><span class="mord cjk_fallback">积</span><span class="mord">/</span><span class="mopen">(</span><span class="mord cjk_fallback">肿</span><span class="mord cjk_fallback">瘤</span><span class="mord cjk_fallback">面</span><span class="mord cjk_fallback">积</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">瘤</span><span class="mord cjk_fallback">内</span><span class="mord cjk_fallback">基</span><span class="mord cjk_fallback">质</span><span class="mord cjk_fallback">面</span><span class="mord cjk_fallback">积</span><span class="mclose">)</span></span></span></span></span></p>
+<p>既往研究均以50％作为间质丰富或缺乏的界定值（肿瘤组织内基质面积&gt;= 50％视野定义为间质富集组(stroma-rich group)，而肿瘤基质面积&lt; 50％视野定义为间质缺乏组（stroma-poor group）），从而比较患者的预后差异。目前研究表明，在结肠癌、非小细胞肺癌、乳腺癌、食管鳞癌、鼻咽癌、宫颈癌、肝细胞癌中，间质丰富的患者预后较差,TSR为影响肿瘤预后的独立因素。适宜的间质环境是肿瘤发生的基础,肿瘤间质通过各种分子信号通路广泛影响肿瘤的生成、发展、侵袭和转移等生物学行为。作为一种病理形态定量方法,肿瘤间质比在一些实体瘤中已经被证实是一种新的、可靠的预后因子。</p>
+<p><strong>染色法</strong>：苏木素(Hematoxylin)和伊红(Eosin)染色,简称HE。苏木素伊红染色后细胞核呈现蓝色，细胞浆呈现粉红色或红色。</p>
+<h1 id="二-数据集">二、数据集</h1>
+<p>数据图像：扫描的（数字化）组织切片（整个幻灯片图像；WSI）<br>
+<strong>数据集</strong>：<br>
+论文1：<br>
+The data sets used for training and testing of the deep learning model are available (doi:10.5281/zenodo.4024676), including the training set part 1, the training set part 3, the test set 2, and the TSR evaluation set. The source code and the trained CNN model are also openly available online (doi: 10.5281/zenodo.4023999).<br>
+https://zenodo.org/record/4024676#.YBEg5HczZOc</p>
+<h1 id="三-相关论文">三、相关论文</h1>
+<h2 id="论文1">论文1:</h2>
+<p>Ke Zhao. et al. Artificial intelligence quantified tumour-stroma ratio is an independent predictor for overall survival in resectable colorectal cancer. https://doi.org/10.1016/j.ebiom.2020.103054.</p>
+<p><img src="https://i.loli.net/2021/01/27/jW2cUFMk1vG3tNm.png" alt="图1" loading="lazy"><br>
+（a） 在ImageNet数据集上对CNN模型（VGG-19）进行预训练，利用训练集对CNN模型进行迁移学习训练。使用两组独立的图像数据来评估模型的分类精度。<br>
+（b） WSI图像（放大20°）采用CNN模型，滑动窗口法分割。通过计算分割结果中每个组织的面积，计算出8个组织类别（不包括BAC类别）的比值，并计算出肿瘤间质的比值。<br>
+CNN，卷积神经网络；HE，苏木精-伊红；WSI，全玻片图像；ADI，脂肪；BAC，背景；DEB，碎片；LYM，淋巴细胞聚集；MUC，粘液；MUS，肌肉；NOR，正常粘膜；STR，基质；TUM，肿瘤上皮</p>
+<hr>
+<p><img src="https://i.loli.net/2021/01/27/O1lB6NtYFpabnxf.png" alt="图2" loading="lazy"><br>
+间质低（a）和间质高（b）的例子HE染色WSI和相应的分段结果（c，间质低；d，间质高）。<br>
+HE，苏木精-伊红；WSI，全玻片图像。</p>
+<hr>
+<p><img src="https://i.loli.net/2021/01/27/r8oyZDAuzw4TnCh.png" alt="图3" loading="lazy"><br>
+TSR一致性分析。<br>
+（a） HE图像块、病理学家注释和CNN模型预测图的示例。<br>
+（b） CNNmodel和病理学家预测的TSR之间的一致性。<br>
+（c） TSR估算的Bland  Altman图。水平实线为平均值，虚线为零，阴影区域为95%CI。<br>
+TSR，肿瘤间质比率；HE，苏木精-伊红；CNN，卷积神经网络；CI，置信区间</p>
+<h2 id="论文2">论文2:</h2>
+<p>Geessink, O.G.F., Baidoshvili, A., Klaase, J.M. et al. Computer aided quantification of intratumoral stroma yields an independent prognosticator in rectal cancer. Cell Oncol. 42, 331–341 (2019). https://doi.org/10.1007/s13402-019-00429-z</p>
+<p><strong>目的</strong><br>
+肿瘤基质比率（TSR）在大肠癌和其他实体恶性肿瘤中是独立的预后因素。数字病理学在常规组织诊断中的最新介绍为自动TSR分析提供了机会。我们研究了直肠癌全幻灯片图像中计算机辅助量化肿瘤内基质的潜力。<br>
+<strong>方法</strong><br>
+由两名专家分析了129名直肠腺癌患者的组织学切片，他们选择了合适的基质热点并通过视觉评估了TSR。训练了一种基于深度学习的半自动方法，以对直肠癌组织学中的所有相关组织类型进行细分，然后将其应用于专家提供的热点。通过两种TSR方法（可视和自动）将患者分为“基质高”或“基质低”组。这样就可以根据疾病特异性生存时间和无疾病生存时间对两种方法进行预后比较。<br>
+CNN将H＆E染色的直肠癌WSI进行组织分割（即组织区域细分），分为9种不同类别：肿瘤，肿瘤内基质，坏死，肌肉，健康上皮，脂肪组织，淋巴细胞，粘液和红细胞。<br>
+<strong>结果</strong><br>
+以间质低为基线，发现自动TSR的预后与年龄，性别，pT分期，淋巴结状况，肿瘤等级以及是否给予辅助治疗无关，二者均针对疾病特异性生存率（危险比= 2.48（ 95％置信区间1.29–4.78）和无病生存期（危险比= 2.05（95％置信区间1.11–3.78）。视觉评估的TSR并非多因素分析中的独立预后因素。<br>
+<strong>结论</strong><br>
+这项工作表明，在用户提供的基质热点中自动评估时，TSR是直肠癌的独立预后因子。此处介绍的基于深度学习的技术可能对病理学家的常规诊断有很大帮助。</p>
+<p><img src="https://i.loli.net/2021/01/27/kTQqdZrwaSDeRWH.png" alt="图4" loading="lazy"><br>
+上排：观察者选择的1.8毫米宽的基质热点圆，用于评估TSR视觉a，并提取直径约为4000像素以供CNN处理。<br>
+下排：相同区域的组织被CNN分割，用于计算TSR-auto。a观察员达成共识; b其他组织包括以下类别：肌肉，健康上皮，脂肪组织，淋巴细胞，粘液和红细胞</p>
+<h2 id="其他">其他：</h2>
+<p>非小细胞肺癌NSCLC<br>
+腹膜假黏液瘤<br>
+淋巴结转移的乳腺癌</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[产品经验分享会总结]]></title>
         <id>https://shirley-hz-git-hub-io.vercel.app/Emk1q4wPG/</id>
